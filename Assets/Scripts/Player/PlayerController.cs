@@ -1,24 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action Died;
+
     private Animator myAnim;
 
     internal PlayerMovement playerMovement;
 
-    private bool isDead;
-
     public bool IsDead
     {
-        get => isDead;
+        get;
+        private set;
     }
-
 
     private void Awake()
     {
-        isDead = false;
+        IsDead = false;
 
         myAnim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
@@ -66,7 +65,9 @@ public class PlayerController : MonoBehaviour
         playerMovement._rb2d.bodyType = RigidbodyType2D.Static;
         AudioManager_script.Instance.HurtSound();
         myAnim.Play("Death");
-        isDead = true;
+
+        IsDead = true;
+        Died?.Invoke();
     }
 
 }

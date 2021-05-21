@@ -61,7 +61,7 @@ public class PlayerInput : MonoBehaviour
     #region JumpInputSettings
     private void JumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _playerMove.isGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && _playerMove.IsGrounded())
         {
             AudioManager_script.Instance.JumpSound();
             isJumping = true;
@@ -81,9 +81,4 @@ public class PlayerInput : MonoBehaviour
             isJumping = false;
     }
 #endregion
-
-  
-
-
-
 }

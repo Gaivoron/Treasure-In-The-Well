@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    public Transform Player;
 
     [SerializeField] private Vector3 posOffset;
 
@@ -17,8 +15,13 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
+        if (Player == null)
+        {
+            return;
+        }
+
         startPos = transform.position;
-        endPos = player.position;
+        endPos = Player.position;
 
         endPos.x += posOffset.x;
         endPos.y += posOffset.y;

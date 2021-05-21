@@ -1,17 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TODO - move to a namespace.
 public class MainMenu : MonoBehaviour
 {
    public void Play()
     {
         SceneManager.LoadScene("Game");
-        Time.timeScale = 1;
     }
 
-    public void Exit() => Application.Quit();
-
-
+    public void Exit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

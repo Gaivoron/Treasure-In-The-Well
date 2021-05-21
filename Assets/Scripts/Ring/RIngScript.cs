@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RIngScript : MonoBehaviour
+public class RingScript : MonoBehaviour
 {
     [Header("Script Ref's")]
     [SerializeField] private PlayerController playerController;
