@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gameplay.Player;
+using System;
 
 namespace Gameplay
 {
@@ -8,14 +9,16 @@ namespace Gameplay
 
         private readonly ITimer _timer;
         private readonly ITimeController _timeController;
-
-        private readonly PlayerController _player;
+        private readonly IExit _exit;
+        private readonly IPlayer _player;
 
         //TODO - replace PlayerController with interface.
-        public Gameplay(PlayerController player, ITimer timer, ITimeController timeController)
+        public Gameplay(IPlayer player, IExit exit, ITimer timer, ITimeController timeController)
         {
+            _exit = exit;
+            _exit.Passed += OnPlayerPassed;
+
             _player = player;
-            //TODO - handle win scenario.
             _player.Died += OnPlayerDied;
 
             _timer = timer;
@@ -23,6 +26,14 @@ namespace Gameplay
 
             _timeController = timeController;
             _timeController.Time = 0;
+        }
+
+        private void OnPlayerPassed(IPlayer player)
+        {
+            if (player == _player)
+            {
+                OnFinished(true);
+            }
         }
 
         private void OnPlayerDied()
@@ -38,6 +49,7 @@ namespace Gameplay
         private void OnFinished(bool hasWon)
         {
             _player.Died -= OnPlayerDied;
+            _exit.Passed -= OnPlayerPassed;
 
             _timer.TimePassed -= OnTimePassed;
 

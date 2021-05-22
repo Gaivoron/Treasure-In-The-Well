@@ -1,10 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Gameplay.Player;
+using System;
 
 namespace Gameplay
 {
-    public sealed class GameManager : MonoBehaviour, ITimeController
+    public sealed partial class GameManager : IInteractable, IExit
+    {
+        public event Action<IPlayer> Passed;
+
+        void IInteractable.ApplyTo(IPlayer player)
+        {
+            if (player.HasRing)
+            {
+                Passed?.Invoke(player);
+            }
+        }
+    }
+
+    public sealed partial class GameManager : MonoBehaviour, ITimeController
     {
         [Header("UI Ref's")]
         [SerializeField] private GameObject _gameOverText;
@@ -13,12 +28,12 @@ namespace Gameplay
         [SerializeField] private Text _timerText;
 
         private float _myTime;
-        private bool _hasWon = false;
 
         [SerializeField] private CameraFollow _camera;
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private PlayerController _playerPrefab;
-        [SerializeField] private RingScript _ringScript;
+
+        [SerializeField] private Enemy[] _enemies;
 
         float ITimeController.Time
         {
@@ -30,6 +45,23 @@ namespace Gameplay
             }
         }
 
+        public void GoToMainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
+        private IPlayer CreatePlayer()
+        {
+            var player = Instantiate(_playerPrefab, _spawnPoint.position, Quaternion.identity, null);
+            _camera.Player = player.transform;
+            foreach (var enemy in _enemies)
+            {
+                enemy.Player = player;
+            }
+
+            return player;
+        }
+
         private void Awake()
         {
             _gameOverText.SetActive(false);
@@ -39,9 +71,9 @@ namespace Gameplay
             //TODO - wait for player to land.
             //TODO - obtain ITimer.
             var timer = GetComponent<ITimer>();
-            var player = Instantiate(_playerPrefab, _spawnPoint.position, Quaternion.identity, null);
-            _camera.Player = player.transform;
-            var gameplay = new Gameplay(player, timer, this);
+
+            var player = CreatePlayer();
+            var gameplay = new Gameplay(player, this, timer, this);
             gameplay.OnFinished(OnGameOver);
 
             void OnGameOver(bool hasWon)
@@ -64,29 +96,5 @@ namespace Gameplay
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-
-        public void GoToMainMenu()
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
-
-        /*
-
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (col.gameObject.CompareTag("Player") && _ringScript.TookRing)
-            {
-                OnPlayerWon();
-            }
-        }
-
-        private void OnPlayerWon()
-        {
-            _hasWon = true;
-
-            _playerController.playerMovement._rb2d.gravityScale = 0;
-            AudioManager_script.Instance.WinSound();
-        }
-        */
     }
 }

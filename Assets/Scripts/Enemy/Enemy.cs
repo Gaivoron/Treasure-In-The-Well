@@ -1,19 +1,19 @@
-﻿using UnityEngine;
+﻿using Gameplay.Player;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Target")]
-    [SerializeField] private Transform player;
-
     [Header("Enemy Settings")]
     [SerializeField] private float _speed;
     [SerializeField] private float _radiusAgro;
 
-    [Header("Script Ref's")]
-    [SerializeField] private PlayerController playerController;
-
-
     private Vector2 startPos;
+
+    public IPlayer Player
+    {
+        get;
+        set;
+    }
 
     private void Awake()
     {
@@ -28,32 +28,20 @@ public class Enemy : MonoBehaviour
     # region MovingLogic
     private void MovingLogic()
     {
-
-        if (!playerController.IsDead)
+        if (Player != null && !Player.IsDead && Vector2.Distance(transform.position, Player.Position) < _radiusAgro)
         {
-            if (Vector2.Distance(transform.position, player.position) < _radiusAgro)
-            {
-                MovingToPlayer();
-            }
-            else if (Vector2.Distance(transform.position, player.position) > _radiusAgro)
-            {
-                MovingToOrigPos();
-            }
+            MoveTo(Player.Position);
         }
         else
         {
-            MovingToOrigPos();
+            MoveTo(startPos);
         }
     }
-    private void MovingToPlayer()
+
+    private void MoveTo(Vector3 target)
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, _speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target, _speed * Time.deltaTime);
     }
 
-
-    private void MovingToOrigPos()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, startPos, _speed * Time.deltaTime);
-    }
     #endregion
 }

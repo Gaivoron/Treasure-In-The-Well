@@ -370,6 +370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376d1cd17596d7046a7f4180661ed23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 1
+  _trails:
+  - {fileID: 6203475628252649080}
+  - {fileID: 2101806431436609163}
 --- !u!114 &3640055738906347496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +388,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 0.5
   moveSpeed: 10
-  jumpForce: 12
   groundPoint: {fileID: 3640055740104707438}
   groundLayer:
     serializedVersion: 2
