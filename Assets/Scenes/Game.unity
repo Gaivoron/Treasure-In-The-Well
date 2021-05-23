@@ -3740,7 +3740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOverText: {fileID: 185404517}
-  _restartGameText: {fileID: 1389255007}
+  _inputHint: {fileID: 1389255012}
   _winGameText: {fileID: 2031824542}
   _timerText: {fileID: 776571475}
   _camera: {fileID: 519420030}
@@ -4934,10 +4934,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1389255008}
   - component: {fileID: 1389255011}
+  - component: {fileID: 1389255012}
   - component: {fileID: 1389255010}
   - component: {fileID: 1389255009}
   m_Layer: 5
-  m_Name: Restart_T
+  m_Name: InputHint_T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5019,6 +5020,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1389255007}
   m_CullTransparentMesh: 0
+--- !u!114 &1389255012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389255007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285ea117cb08d4845b0d8120fe6d1440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1389255010}
 --- !u!4 &1407954649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5645099716321873063, guid: 0e04340e7c8bed54d9e28acae0fe7802,

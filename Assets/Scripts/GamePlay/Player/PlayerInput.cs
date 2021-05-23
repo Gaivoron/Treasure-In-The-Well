@@ -46,7 +46,6 @@ namespace Gameplay.Player
             FlipPlayer();
         }
 
-
         private void FlipPlayer()
         {
             if (_playerMove._rb2d.velocity.x > 0)

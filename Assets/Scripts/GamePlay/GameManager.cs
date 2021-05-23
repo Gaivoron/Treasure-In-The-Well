@@ -23,7 +23,7 @@ namespace Gameplay
     {
         [Header("UI Ref's")]
         [SerializeField] private GameObject _gameOverText;
-        [SerializeField] private GameObject _restartGameText;
+        [SerializeField] private InputHint _inputHint;
         [SerializeField] private GameObject _winGameText;
         [SerializeField] private Text _timerText;
 
@@ -35,6 +35,7 @@ namespace Gameplay
 
         [SerializeField] private Enemy[] _enemies;
 
+        //TODO - move implementation of ITimeController into a seperate class?
         float ITimeController.Time
         {
             get => _myTime;
@@ -65,35 +66,41 @@ namespace Gameplay
         private void Awake()
         {
             _gameOverText.SetActive(false);
-            _restartGameText.SetActive(false);
+            _inputHint.Hide();
             _winGameText.SetActive(false);
 
             //TODO - wait for player to land.
             //TODO - obtain ITimer.
             var timer = GetComponent<ITimer>();
 
-            var player = CreatePlayer();
-            var gameplay = new Gameplay(player, this, timer, this);
-            gameplay.OnFinished(OnGameOver);
+            var readyMode = new ReadyPlayerMode(timer, _inputHint);
+            readyMode.OnFinished(OnPlayerReady);
 
-            void OnGameOver(bool hasWon)
+            void OnPlayerReady(bool _)
             {
-                _restartGameText.SetActive(true);
-                if (!hasWon)
+                var player = CreatePlayer();
+                var gameplay = new Gameplay(player, this, timer, this);
+                gameplay.OnFinished(OnGameOver);
+
+                void OnGameOver(bool hasWon)
                 {
-                    _gameOverText.SetActive(true);
-                }
-                else
-                {
-                    _winGameText.SetActive(true);
+                    _inputHint.ShowRestartHint();
+                    if (!hasWon)
+                    {
+                        _gameOverText.SetActive(true);
+                    }
+                    else
+                    {
+                        _winGameText.SetActive(true);
+                    }
+
+                    new GameOver(timer).OnFinished(RestartGame);
                 }
 
-                new GameOver(timer).OnFinished(RestartGame);
-            }
-
-            void RestartGame(bool _)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                void RestartGame(bool doRestart)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
             }
         }
     }
