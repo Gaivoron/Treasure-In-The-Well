@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Gameplay.Player;
+using Gameplay.Cameras;
 using System;
 
 namespace Gameplay
@@ -21,6 +22,11 @@ namespace Gameplay
 
     public sealed partial class GameManager : MonoBehaviour, ITimeController
     {
+        [Header("Camera")]
+        [SerializeField] private CameraFollow _camera;
+        [SerializeField] private CameraBounds _bounds;
+        [SerializeField] private float _previewSpeed = 20f;
+
         [Header("UI Ref's")]
         [SerializeField] private GameObject _gameOverText;
         [SerializeField] private InputHint _inputHint;
@@ -29,7 +35,6 @@ namespace Gameplay
 
         private float _myTime;
 
-        [SerializeField] private CameraFollow _camera;
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private PlayerController _playerPrefab;
 
@@ -54,6 +59,7 @@ namespace Gameplay
         private IPlayer CreatePlayer()
         {
             var player = Instantiate(_playerPrefab, _spawnPoint.position, Quaternion.identity, null);
+            _camera.enabled = true;
             _camera.Player = player.transform;
             foreach (var enemy in _enemies)
             {
@@ -65,20 +71,26 @@ namespace Gameplay
 
         private void Awake()
         {
+            _camera.enabled = false;
             _gameOverText.SetActive(false);
             _inputHint.Hide();
             _winGameText.SetActive(false);
 
-            //TODO - wait for player to land.
-            //TODO - obtain ITimer.
             var timer = GetComponent<ITimer>();
 
-            var readyMode = new ReadyPlayerMode(timer, _inputHint);
-            readyMode.OnFinished(OnPlayerReady);
+            var previewMode = new LevelPreviewMode(timer, _bounds.transform, _bounds, _previewSpeed);
+            previewMode.OnFinished(OnLevelShown);
+
+            void OnLevelShown(bool _)
+            {
+                var readyMode = new ReadyPlayerMode(timer, _inputHint);
+                readyMode.OnFinished(OnPlayerReady);
+            }
 
             void OnPlayerReady(bool _)
             {
                 var player = CreatePlayer();
+                //TODO - wait for player to land.
                 var gameplay = new Gameplay(player, this, timer, this);
                 gameplay.OnFinished(OnGameOver);
 
