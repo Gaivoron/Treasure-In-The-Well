@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Gameplay
 {
     //TODO - should implement interface.
-    public sealed class InputHint : MonoBehaviour
+    public sealed class HintText : MonoBehaviour
     {
         [SerializeField]
         private Text _text;

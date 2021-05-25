@@ -26,10 +26,12 @@ namespace Gameplay
         [SerializeField] private CameraFollow _camera;
         [SerializeField] private CameraBounds _bounds;
         [SerializeField] private float _previewSpeed = 20f;
+        [SerializeField] private float _previewPause = 5f;
 
         [Header("UI Ref's")]
         [SerializeField] private GameObject _gameOverText;
-        [SerializeField] private InputHint _inputHint;
+        [SerializeField] private HintText _monologueHint;
+        [SerializeField] private HintText _inputHint;
         [SerializeField] private GameObject _winGameText;
         [SerializeField] private Text _timerText;
 

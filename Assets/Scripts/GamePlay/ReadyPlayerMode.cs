@@ -11,12 +11,12 @@ namespace Gameplay
         public event Action<bool> Finished;
 
         private readonly ITimer _timer;
-        private readonly InputHint _inputHint;
+        private readonly HintText _inputHint;
         private readonly Transform _camera;
         private readonly ICameraBounds _bounds;
         private readonly float _speed;
 
-        public LevelPreviewMode(ITimer timer, InputHint inputHint, Transform camera, ICameraBounds bounds, float speed)
+        public LevelPreviewMode(ITimer timer, HintText inputHint, Transform camera, ICameraBounds bounds, float speed)
         {
             _timer = timer;
             _timer.TimePassed += MoveDown;
@@ -67,11 +67,11 @@ namespace Gameplay
     public sealed class ReadyPlayerMode : IGameMode
     {
         private readonly ITimer _timer;
-        private readonly InputHint _inputHint;
+        private readonly HintText _inputHint;
 
         public event Action<bool> Finished;
 
-        public ReadyPlayerMode(ITimer timer, InputHint inputHint)
+        public ReadyPlayerMode(ITimer timer, HintText inputHint)
         {
             _inputHint = inputHint;
             _inputHint.ShowStartHint();
