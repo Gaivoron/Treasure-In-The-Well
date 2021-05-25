@@ -71,6 +71,7 @@ namespace Gameplay
 
         private void Awake()
         {
+            _timerText.gameObject.SetActive(false);
             _camera.enabled = false;
             _gameOverText.SetActive(false);
             _inputHint.Hide();
@@ -78,7 +79,7 @@ namespace Gameplay
 
             var timer = GetComponent<ITimer>();
 
-            var previewMode = new LevelPreviewMode(timer, _bounds.transform, _bounds, _previewSpeed);
+            var previewMode = new LevelPreviewMode(timer, _inputHint, _bounds.transform, _bounds, _previewSpeed);
             previewMode.OnFinished(OnLevelShown);
 
             void OnLevelShown(bool _)
@@ -91,6 +92,7 @@ namespace Gameplay
             {
                 var player = CreatePlayer();
                 //TODO - wait for player to land.
+                _timerText.gameObject.SetActive(true);
                 var gameplay = new Gameplay(player, this, timer, this);
                 gameplay.OnFinished(OnGameOver);
 

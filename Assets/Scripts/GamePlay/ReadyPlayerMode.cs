@@ -11,14 +11,18 @@ namespace Gameplay
         public event Action<bool> Finished;
 
         private readonly ITimer _timer;
+        private readonly InputHint _inputHint;
         private readonly Transform _camera;
         private readonly ICameraBounds _bounds;
         private readonly float _speed;
 
-        public LevelPreviewMode(ITimer timer, Transform camera, ICameraBounds bounds, float speed)
+        public LevelPreviewMode(ITimer timer, InputHint inputHint, Transform camera, ICameraBounds bounds, float speed)
         {
             _timer = timer;
             _timer.TimePassed += MoveDown;
+
+            _inputHint = inputHint;
+            _inputHint.ShowSkipHint();
 
             _camera = camera;
             _bounds = bounds;
@@ -52,6 +56,7 @@ namespace Gameplay
             if (Mathf.Abs(_camera.position.y - _bounds.MaxY) <= Epsilon)
             {
                 _timer.TimePassed -= MoveUp;
+                _inputHint.Hide();
                 Finished?.Invoke(true);
             }
         }
