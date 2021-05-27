@@ -10,7 +10,7 @@ namespace Gameplay.Player
 
         bool IsDead { get; }
 
-        bool HasRing { get; }
+        bool HasQuestItem { get; }
 
         int Health { get; set; }
 

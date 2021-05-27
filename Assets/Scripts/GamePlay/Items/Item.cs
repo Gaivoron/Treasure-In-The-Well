@@ -1,10 +1,15 @@
 ﻿using Gameplay.Player;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Gameplay.Items
 {
-    public sealed class Ring : MonoBehaviour, IInteractable, IItem
+    public sealed class Item : MonoBehaviour, IInteractable, IItem
     {
+        [SerializeField] private ItemKeys[] _keys;
+
+        IEnumerable<ItemKeys> IItem.Keys => _keys;
+
         void IInteractable.ApplyTo(IPlayer player)
         {
             if (player.TakeItem(this))
@@ -13,7 +18,7 @@ namespace Gameplay.Items
             }
         }
 
-        //TODO - move to a basic class.
+        //TODO - move to a basic class?
         private void OnItemTaken()
         {
             AudioManager_script.Instance.RingSound();

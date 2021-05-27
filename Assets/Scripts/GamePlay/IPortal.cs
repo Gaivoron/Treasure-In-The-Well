@@ -3,7 +3,7 @@ using System;
 
 namespace Gameplay
 {
-    public interface IExit
+    public interface IPortal
     {
         event Action<IPlayer> Passed;
     }

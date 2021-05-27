@@ -7,13 +7,13 @@ using System;
 
 namespace Gameplay
 {
-    public sealed partial class GameManager : IInteractable, IExit
+    public sealed partial class GameManager : IInteractable, IPortal
     {
         public event Action<IPlayer> Passed;
 
         void IInteractable.ApplyTo(IPlayer player)
         {
-            if (player.HasRing)
+            if (player.HasQuestItem)
             {
                 Passed?.Invoke(player);
             }

@@ -65,7 +65,7 @@ namespace Gameplay.Player
 
         Vector2 IPlayer.Position => transform.position;
 
-        public bool HasRing { get; private set; }
+        public bool HasQuestItem { get; private set; }
 
         bool IPlayer.TakeItem(IItem item)
         {
@@ -84,11 +84,10 @@ namespace Gameplay.Player
 
         void CheckForRing()
         {
-            //TODO - come up with a better check.
-            HasRing = _items.Any(any => any.GetType() == typeof(Ring));
-
-            playerMovement.JumpForce = HasRing ? 20 : 12;
-            EnableTrails(HasRing);
+            HasQuestItem = _items.Any(any => any.Keys.Contains(ItemKeys.QuestItem));
+            var hasJumpBooster = _items.Any(any => any.Keys.Contains(ItemKeys.JumpBooster));
+            playerMovement.JumpForce = hasJumpBooster ? 20 : 12;
+            EnableTrails(hasJumpBooster);
         }
 
         private void Awake()

@@ -9,11 +9,11 @@ namespace Gameplay
 
         private readonly ITimer _timer;
         private readonly ITimeController _timeController;
-        private readonly IExit _exit;
+        private readonly IPortal _exit;
         private readonly IPlayer _player;
 
         //TODO - replace PlayerController with interface.
-        public Gameplay(IPlayer player, IExit exit, ITimer timer, ITimeController timeController)
+        public Gameplay(IPlayer player, IPortal exit, ITimer timer, ITimeController timeController)
         {
             _exit = exit;
             _exit.Passed += OnPlayerPassed;
