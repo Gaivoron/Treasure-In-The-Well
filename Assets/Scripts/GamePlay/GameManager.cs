@@ -76,17 +76,18 @@ namespace Gameplay
             _timerText.gameObject.SetActive(false);
             _camera.enabled = false;
             _gameOverText.SetActive(false);
+            _monologueHint.Hide();
             _inputHint.Hide();
             _winGameText.SetActive(false);
 
             var timer = GetComponent<ITimer>();
 
-            var previewMode = new LevelPreviewMode(timer, _inputHint, _bounds.transform, _bounds, _previewSpeed);
+            var previewMode = new LevelPreviewMode(timer, _inputHint, _monologueHint, _bounds.transform, _bounds, _previewSpeed);
             previewMode.OnFinished(OnLevelShown);
 
             void OnLevelShown(bool _)
             {
-                var readyMode = new ReadyPlayerMode(timer, _inputHint);
+                var readyMode = new ReadyPlayerMode(timer, _inputHint, _monologueHint);
                 readyMode.OnFinished(OnPlayerReady);
             }
 
