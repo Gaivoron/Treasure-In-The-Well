@@ -7,6 +7,8 @@
         public static void ShowSkipHint(this HintText hint) => hint.Show("Hold  \"SPACEBAR\"  to  Skip  forward");
 
         public static void ShowInterludeHint(this HintText hint) => hint.Show("Oh  no!  I've  dropped  my  MAGIC  RING  into  that  cursed  WELL!");
-        public static void ShowPrepareeHint(this HintText hint) => hint.Show("HURRY UP  and  get  IT  for  me  from  the  bottom  of  the  WEEL.\nI  promise  to  REWARD  you handsomely.");
+        public static void ShowPrepareHint(this HintText hint) => hint.Show("HURRY UP  and  get  IT  for  me  from  the  bottom  of  the  WEEL.\nI  promise  to  REWARD  you  handsomely.");
+
+        public static void ShowMoveUpHint(this HintText hint) => hint.Show("Now  bring  it  back  to  me.\nAnd  be  QUICK..");
     }
 }

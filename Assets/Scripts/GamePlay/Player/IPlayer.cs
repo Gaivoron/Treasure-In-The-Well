@@ -7,6 +7,7 @@ namespace Gameplay.Player
     public interface IPlayer
     {
         event Action Died;
+        event Action<IItem> ItemTaken;
 
         bool IsDead { get; }
 

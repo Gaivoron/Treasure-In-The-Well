@@ -9,6 +9,7 @@ namespace Gameplay.Player
     public sealed class PlayerController : MonoBehaviour, IPlayer
     {
         public event Action Died;
+        public event Action<IItem> ItemTaken;
 
         private readonly IList<IItem> _items = new List<IItem>();
 
@@ -71,6 +72,7 @@ namespace Gameplay.Player
         {
             _items.Add(item);
             CheckForRing();
+            ItemTaken?.Invoke(item);
             return true;
         }
 

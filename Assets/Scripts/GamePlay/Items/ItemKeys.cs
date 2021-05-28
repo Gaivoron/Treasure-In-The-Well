@@ -4,5 +4,6 @@
     {
         QuestItem = 1,
         JumpBooster = 100,
+        Catalyst = 101,
     }
 }

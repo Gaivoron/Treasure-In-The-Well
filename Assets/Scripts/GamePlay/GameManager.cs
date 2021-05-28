@@ -96,7 +96,7 @@ namespace Gameplay
                 var player = CreatePlayer();
                 //TODO - wait for player to land.
                 _timerText.gameObject.SetActive(true);
-                var gameplay = new Gameplay(player, this, timer, this);
+                var gameplay = new Gameplay(player, _monologueHint, this, timer, this);
                 gameplay.OnFinished(OnGameOver);
 
                 void OnGameOver(bool hasWon)

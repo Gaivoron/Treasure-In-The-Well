@@ -17,16 +17,16 @@ namespace Gameplay
             _inputHint.ShowStartHint();
 
             _monologueHint = monologueHint;
-            _monologueHint.ShowPrepareeHint();
+            _monologueHint.ShowPrepareHint();
 
-            //TODO - let input hint take controll over input?
+            //TODO - let _inputHint take controll over input?
             _timer = timer;
             _timer.TimePassed += Update;
         }
 
         private void Update(float obj)
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space))
             {
                 _timer.TimePassed -= Update;
                 _inputHint.Hide();
