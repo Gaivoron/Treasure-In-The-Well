@@ -7612,6 +7612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5209038416605797663, guid: f24fe1b8f3b67ba488895f09ba986e29,
         type: 3}
+      propertyPath: _keys.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209038416605797663, guid: f24fe1b8f3b67ba488895f09ba986e29,
+        type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 0}
@@ -7635,6 +7640,11 @@ PrefabInstance:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 79669944}
+    - target: {fileID: 5209038416605797663, guid: f24fe1b8f3b67ba488895f09ba986e29,
+        type: 3}
+      propertyPath: _keys.Array.data[2]
+      value: 101
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f24fe1b8f3b67ba488895f09ba986e29, type: 3}
 --- !u!1001 &3603700590976188988

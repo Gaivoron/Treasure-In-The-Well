@@ -4,6 +4,7 @@ namespace Gameplay.Items
 {
     public interface IItem
     {
+        int Value { get; }
         IEnumerable<ItemKeys> Keys { get; }
     }
 }
