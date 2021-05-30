@@ -31,6 +31,9 @@ MonoBehaviour:
       _maxValue: 1.6
     _clips:
     - {fileID: 8300000, guid: 2ebf2421dddc15a45b7fc6ae8197b1c0, type: 3}
+    - {fileID: 8300000, guid: f91902adc047569498ceaec7d83686ea, type: 3}
+    - {fileID: 8300000, guid: f67fefaf5bb3eb84fa6ec45a0ca1c977, type: 3}
+    - {fileID: 8300000, guid: 8832cab0a285c4446b6b0a8c94fbc53b, type: 3}
   - _key: death
     _pitch:
       _minValue: 1
@@ -44,3 +47,6 @@ MonoBehaviour:
       _maxValue: 1
     _clips:
     - {fileID: 8300000, guid: 5ab8fc664ca4d604f820e255005a664a, type: 3}
+    - {fileID: 8300000, guid: 8d3030fbfa5bb694bb1307e57203e340, type: 3}
+    - {fileID: 8300000, guid: c050b1366437b3345b24999d1d85b48f, type: 3}
+    - {fileID: 8300000, guid: bc98e544f02c5a24a812bb07d4b19c28, type: 3}
