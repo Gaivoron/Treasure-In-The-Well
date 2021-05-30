@@ -65,7 +65,7 @@ namespace AudioManagement
         private IEnumerable<Sound> Create(string key)
         {
             var data = _config[key];
-            return data.Clips.Select((clip) => new Sound(data, gameObject, clip));
+            return data.Clips.Select((clip) => new Sound(data, gameObject, clip)).ToArray();
         }
     }
 }  
