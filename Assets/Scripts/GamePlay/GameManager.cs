@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Gameplay.Player;
 using Gameplay.Cameras;
 using System;
+using AudioManagement;
 
 namespace Gameplay
 {
@@ -108,6 +109,7 @@ namespace Gameplay
                     }
                     else
                     {
+                        AudioManager.Instance.PlayWinSound();
                         _winGameText.SetActive(true);
                     }
 

@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using AudioManagement;
 
 namespace Gameplay.Player
 {
@@ -157,7 +158,7 @@ namespace Gameplay.Player
         private void OnPlayerDied()
         {
             playerMovement._rb2d.bodyType = RigidbodyType2D.Static;
-            AudioManager_script.Instance.HurtSound();
+            AudioManager.Instance.PlayDeathSound();
             myAnim.Play("Death");
             Died?.Invoke();
         }

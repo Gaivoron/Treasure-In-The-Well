@@ -1,6 +1,8 @@
-﻿using Gameplay.Items;
+﻿using AudioManagement;
+using Gameplay.Items;
 using Gameplay.Player;
 using System;
+using System.Linq;
 
 namespace Gameplay
 {
@@ -42,9 +44,24 @@ namespace Gameplay
 
         private void OnItemTaken(IItem item)
         {
+            PlaySound(item);
+
             foreach (var key in item.Keys)
             {
                 OnKeyObtained(key);
+            }
+        }
+
+        private void PlaySound(IItem item)
+        {
+            //TODO - play various sounds depending on item's value.
+            if (item.Keys.Any(key => key == ItemKeys.QuestItem))
+            {
+                AudioManager.Instance.PlayQuestItemSound();
+            }
+            else if (item.Value > 0)
+            {
+                AudioManager.Instance.PlayValuableItemSound();
             }
         }
 

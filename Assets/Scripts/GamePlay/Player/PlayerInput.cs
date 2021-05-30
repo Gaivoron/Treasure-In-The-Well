@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using AudioManagement;
+using UnityEngine;
 
 namespace Gameplay.Player
 {
@@ -63,7 +64,8 @@ namespace Gameplay.Player
         {
             if (Input.GetKeyDown(KeyCode.Space) && _playerMove.IsGrounded())
             {
-                AudioManager_script.Instance.JumpSound();
+                //TODO - move to some other place.
+                AudioManager.Instance.PlayJumpSound();
                 isJumping = true;
                 timeJumpCounter = timeJump;
                 _playerMove.JumpPlayer(_movementY);

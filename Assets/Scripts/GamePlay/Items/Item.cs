@@ -20,10 +20,8 @@ namespace Gameplay.Items
             }
         }
 
-        //TODO - move to a basic class?
         private void OnItemTaken()
         {
-            AudioManager_script.Instance.RingSound();
             gameObject.SetActive(false);
         }
     }
