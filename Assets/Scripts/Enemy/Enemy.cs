@@ -1,7 +1,7 @@
 ﻿using Gameplay.Player;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public sealed class Enemy : MonoBehaviour
 {
     [Header("Enemy Settings")]
     [SerializeField] private float _speed;
