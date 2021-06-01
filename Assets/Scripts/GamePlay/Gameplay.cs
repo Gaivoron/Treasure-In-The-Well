@@ -15,14 +15,18 @@ namespace Gameplay
         private readonly ITimeController _timeController;
         private readonly IPortal _exit;
         private readonly IPlayer _player;
+        private readonly IEnviromentalHazard _hazard;
 
-        public Gameplay(IPlayer player, HintText monologueHint, IPortal exit, ITimer timer, ITimeController timeController)
+        public Gameplay(IPlayer player, IEnviromentalHazard hazard, HintText monologueHint, IPortal exit, ITimer timer, ITimeController timeController)
         {
             _exit = exit;
             _exit.Passed += OnPlayerPassed;
 
             _player = player;
             _player.ItemTaken += OnItemTaken;
+
+            _hazard = hazard;
+
             _player.Died += OnPlayerDied;
 
             _monologueHint = monologueHint;
@@ -74,7 +78,7 @@ namespace Gameplay
                     break;
 
                 case ItemKeys.Catalyst:
-                    //TODO - raise threat level.
+                    _hazard?.Activate();
                     break;
             }
         }

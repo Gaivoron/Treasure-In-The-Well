@@ -38,9 +38,11 @@ namespace Gameplay
 
         private float _myTime;
 
+        //TODO - move to a seperate class?
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private PlayerController _playerPrefab;
 
+        [SerializeField] private EnviromentalHazard _hazard;
         [SerializeField] private Enemy[] _enemies;
 
         //TODO - move implementation of ITimeController into a seperate class?
@@ -97,7 +99,7 @@ namespace Gameplay
                 var player = CreatePlayer();
                 //TODO - wait for player to land.
                 _timerText.gameObject.SetActive(true);
-                var gameplay = new Gameplay(player, _monologueHint, this, timer, this);
+                var gameplay = new Gameplay(player, _hazard, _monologueHint, this, timer, this);
                 gameplay.OnFinished(OnGameOver);
 
                 void OnGameOver(bool hasWon)
