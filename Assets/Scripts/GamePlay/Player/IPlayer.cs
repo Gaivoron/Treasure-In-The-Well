@@ -18,5 +18,6 @@ namespace Gameplay.Player
         Vector2 Position { get; }
 
         bool TakeItem(IItem item);
+        void Release();
     }
 }

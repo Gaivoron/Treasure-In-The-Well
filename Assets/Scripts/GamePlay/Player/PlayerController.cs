@@ -77,6 +77,12 @@ namespace Gameplay.Player
             return true;
         }
 
+        void IPlayer.Release()
+        {
+            //TODO - return player to pool?
+            Destroy(gameObject);
+        }
+
         void EnableTrails(bool isEnabled)
         {
             foreach (var trail in _trails)

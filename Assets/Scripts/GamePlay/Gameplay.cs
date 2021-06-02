@@ -95,6 +95,8 @@ namespace Gameplay
 
         private void OnFinished(bool hasWon)
         {
+            _hazard?.Deactivate();
+
             _player.ItemTaken -= OnItemTaken;
             _player.Died -= OnPlayerDied;
             _exit.Passed -= OnPlayerPassed;

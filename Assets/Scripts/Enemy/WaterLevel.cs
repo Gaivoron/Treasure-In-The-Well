@@ -11,7 +11,17 @@ public sealed class WaterLevel : EnviromentalHazard
 
     public override void Activate()
     {
-        _isActive = true;
+        Activate(true);
+    }
+
+    public override void Deactivate()
+    {
+        Activate(false);
+    }
+
+    private void Activate(bool isActive)
+    {
+        _isActive = isActive;
     }
 
     private void Update()

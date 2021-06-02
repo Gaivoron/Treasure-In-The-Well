@@ -3,24 +3,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Gameplay.Player;
 using Gameplay.Cameras;
-using System;
 using AudioManagement;
 
 namespace Gameplay
 {
-    public sealed partial class GameManager : IInteractable, IPortal
-    {
-        public event Action<IPlayer> Passed;
-
-        void IInteractable.ApplyTo(IPlayer player)
-        {
-            if (player.HasQuestItem)
-            {
-                Passed?.Invoke(player);
-            }
-        }
-    }
-
     public sealed partial class GameManager : MonoBehaviour, ITimeController
     {
         [Header("Camera")]
@@ -30,6 +16,7 @@ namespace Gameplay
         [SerializeField] private float _previewPause = 5f;
 
         [Header("UI Ref's")]
+        [SerializeField] private Timer _timer;
         [SerializeField] private GameObject _gameOverText;
         [SerializeField] private HintText _monologueHint;
         [SerializeField] private HintText _inputHint;
@@ -42,6 +29,7 @@ namespace Gameplay
         [SerializeField] private Transform _spawnPoint;
         [SerializeField] private PlayerController _playerPrefab;
 
+        [SerializeField] private Exit _exit;
         [SerializeField] private EnviromentalHazard _hazard;
         [SerializeField] private Enemy[] _enemies;
 
@@ -83,14 +71,12 @@ namespace Gameplay
             _inputHint.Hide();
             _winGameText.SetActive(false);
 
-            var timer = GetComponent<ITimer>();
-
-            var previewMode = new LevelPreviewMode(timer, _inputHint, _monologueHint, _bounds.transform, _bounds, _previewSpeed);
+            var previewMode = new LevelPreviewMode(_timer, _inputHint, _monologueHint, _bounds.transform, _bounds, _previewSpeed);
             previewMode.OnFinished(OnLevelShown);
 
             void OnLevelShown(bool _)
             {
-                var readyMode = new ReadyPlayerMode(timer, _inputHint, _monologueHint);
+                var readyMode = new ReadyPlayerMode(_timer, _inputHint, _monologueHint);
                 readyMode.OnFinished(OnPlayerReady);
             }
 
@@ -99,11 +85,16 @@ namespace Gameplay
                 var player = CreatePlayer();
                 //TODO - wait for player to land.
                 _timerText.gameObject.SetActive(true);
-                var gameplay = new Gameplay(player, _hazard, _monologueHint, this, timer, this);
+                var gameplay = new Gameplay(player, _hazard, _monologueHint, _exit, _timer, this);
                 gameplay.OnFinished(OnGameOver);
 
                 void OnGameOver(bool hasWon)
                 {
+                    if (hasWon)
+                    {
+                        player.Release();
+                    }
+
                     _inputHint.ShowRestartHint();
                     if (!hasWon)
                     {
@@ -115,7 +106,7 @@ namespace Gameplay
                         _winGameText.SetActive(true);
                     }
 
-                    new GameOver(timer).OnFinished(RestartGame);
+                    new GameOver(_timer).OnFinished(RestartGame);
                 }
 
                 void RestartGame(bool doRestart)
