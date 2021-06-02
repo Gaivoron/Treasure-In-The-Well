@@ -50,3 +50,21 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 8d3030fbfa5bb694bb1307e57203e340, type: 3}
     - {fileID: 8300000, guid: c050b1366437b3345b24999d1d85b48f, type: 3}
     - {fileID: 8300000, guid: bc98e544f02c5a24a812bb07d4b19c28, type: 3}
+  - _key: foot_steps
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 867c016b808e9814bb1f9cc691ce623c, type: 3}
+    - {fileID: 8300000, guid: d3d5c9e07eebac64e93aac6fc54de6f2, type: 3}
+    - {fileID: 8300000, guid: dbd29427d2397db4b9be66dc7a53d2a1, type: 3}
+    - {fileID: 8300000, guid: d159dd547056d4d4fb7c333a806b7952, type: 3}
+    - {fileID: 8300000, guid: 006812eab0452d944aaa1ff1ddb74baf, type: 3}
+    - {fileID: 8300000, guid: 227743d78c3b0924ebe8a10e2ba09974, type: 3}
+    - {fileID: 8300000, guid: 3ade061871232794194fec132e8ee39b, type: 3}
+    - {fileID: 8300000, guid: 58d480d70f3c4ab48b5f8a65c2209550, type: 3}
+    - {fileID: 8300000, guid: eabdf08cd8e96cc4d8c9a522fbfd9841, type: 3}
+    - {fileID: 8300000, guid: d7d22feec23fbc3439955f32e9c0ae92, type: 3}
+    - {fileID: 8300000, guid: 9c4fc7ae5e1c59e408c6830a3aa2cb8d, type: 3}
+    - {fileID: 8300000, guid: 6d27b87c36db1234fbb3e7dfb65eee00, type: 3}
+    - {fileID: 8300000, guid: 27b02825c65c2f8409797e0522ce3f37, type: 3}
