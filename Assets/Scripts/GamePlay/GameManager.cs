@@ -53,13 +53,17 @@ namespace Gameplay
         {
             var player = Instantiate(_playerPrefab, _spawnPoint.position, Quaternion.identity, null);
             _camera.enabled = true;
-            _camera.Player = player.transform;
+            _camera.Player = player.transform;           
+
+            return player;
+        }
+
+        private void SetPlayer(IPlayer player)
+        {
             foreach (var enemy in _enemies)
             {
                 enemy.Player = player;
             }
-
-            return player;
         }
 
         private void Awake()
@@ -83,13 +87,15 @@ namespace Gameplay
             void OnPlayerReady(bool _)
             {
                 var player = CreatePlayer();
-                //TODO - wait for player to land.
+                SetPlayer(player);
+                //TODO - wait for player to land?
                 _timerText.gameObject.SetActive(true);
                 var gameplay = new Gameplay(player, _hazard, _monologueHint, _exit, _timer, this);
                 gameplay.OnFinished(OnGameOver);
 
                 void OnGameOver(bool hasWon)
                 {
+                    SetPlayer(null);
                     if (hasWon)
                     {
                         player.Release();

@@ -11,21 +11,17 @@ namespace Gameplay.Player
         private PlayerMovement _playerMove;
         private PlayerController _playerController;
 
-
         private float timeJumpCounter;
         private float timeJump = 0.5f;
         private bool isJumping;
 
-
-
+        private ISound _footsteps;
 
         private void Awake()
         {
             _playerMove = GetComponent<PlayerMovement>();
             _playerController = GetComponent<PlayerController>();
         }
-
-
 
         public void Update()
         {
@@ -43,6 +39,16 @@ namespace Gameplay.Player
 
         private void FixedUpdate()
         {
+            if (_footsteps != null && !_footsteps.IsPlaying)
+            {
+                _footsteps = null;
+            }
+
+            if (Mathf.RoundToInt(_movementX.x) != 0 && _playerMove.IsGrounded && _footsteps == null)
+            {
+                _footsteps = AudioManager.Instance.PlayFootSteps();
+            }
+
             _playerMove.MovePlayer(_movementX);
             FlipPlayer();
         }
@@ -62,7 +68,7 @@ namespace Gameplay.Player
         #region JumpInputSettings
         private void JumpInput()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _playerMove.IsGrounded())
+            if (Input.GetKeyDown(KeyCode.Space) && _playerMove.IsGrounded)
             {
                 //TODO - move to some other place.
                 AudioManager.Instance.PlayJumpSound();

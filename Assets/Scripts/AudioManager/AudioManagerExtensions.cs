@@ -2,28 +2,45 @@
 {
     public static class AudioManagerExtensions
     {
-        public static void PlayWinSound(this IAudioManager manager)
+        public static ISound PlayWinSound(this IAudioManager manager)
         {
-            manager.Get("win")?.Play();
+            var sound = manager.Get("win");
+            sound?.Play();
+            return sound;
         }
 
-        public static void PlayQuestItemSound(this IAudioManager manager)
+        public static ISound PlayQuestItemSound(this IAudioManager manager)
         {
-            manager.Get("quest_item")?.Play();
+            var sound =  manager.Get("quest_item");
+            sound?.Play();
+            return sound;
         }
 
-        public static void PlayValuableItemSound(this IAudioManager manager)
+        public static ISound PlayValuableItemSound(this IAudioManager manager)
         {
-            manager.Get("valuable_item")?.Play();
+            var sound = manager.Get("valuable_item");
+            sound?.Play();
+            return sound;
         }
 
-        public static void PlayJumpSound(this IAudioManager manager)
+        public static ISound PlayJumpSound(this IAudioManager manager)
         {
-            manager.Get("jump")?.Play();
+            var sound = manager.Get("jump");
+            sound?.Play();
+            return sound;
         }
-        public static void PlayDeathSound(this IAudioManager manager)
+        public static ISound PlayDeathSound(this IAudioManager manager)
         {
-            manager.Get("death")?.Play();
+            var sound = manager.Get("death");
+            sound?.Play();
+            return sound;
+        }
+
+        public static ISound PlayFootSteps(this IAudioManager manager)
+        {
+            var sound = manager.Get("foot_steps");
+            sound?.Play();
+            return sound;
         }
     }
 }

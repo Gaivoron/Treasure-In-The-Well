@@ -15,6 +15,15 @@ namespace Gameplay.Player
         //TODO - should not be public.
         public Rigidbody2D _rb2d;
 
+        public bool IsGrounded
+        {
+            get
+            {
+                Collider2D groundCheck = Physics2D.OverlapCircle(groundPoint.position, _radius, groundLayer);
+                return groundCheck != null;
+            }
+        }
+
         public float JumpForce
         {
             set;
@@ -29,12 +38,6 @@ namespace Gameplay.Player
         public void JumpPlayer(Vector2 movement)
         {
             _rb2d.velocity = movement * JumpForce;
-        }
-
-        public bool IsGrounded()
-        {
-            Collider2D groundCheck = Physics2D.OverlapCircle(groundPoint.position, _radius, groundLayer);
-            return groundCheck != null;
         }
     }
 }

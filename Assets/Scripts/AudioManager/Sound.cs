@@ -10,6 +10,12 @@ namespace AudioManagement
         private readonly IAudioSetting _setting;
         private readonly AudioSource _source;
 
+        public bool IsPlaying
+        {
+            get;
+            private set;
+        }
+
         public Sound(IAudioSetting setting, GameObject parent, AudioClip clip)
         {
             _setting = setting;
@@ -20,6 +26,8 @@ namespace AudioManagement
 
         void ISound.Play(bool loop)
         {
+            IsPlaying = true;
+
             _source.loop = loop;
             _source.pitch = _setting.Pitch;
             _source.Play();
@@ -45,10 +53,13 @@ namespace AudioManagement
 
         void IObject<string>.Init()
         {
+            IsPlaying = false;
         }
 
         public void Release()
         {
+            IsPlaying = false;
+
             _source.Stop();
             Released?.Invoke();
         }
