@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Gameplay.Player;
 using Gameplay.Cameras;
 using AudioManagement;
+using System.Collections;
+using System.Linq;
 
 namespace Gameplay
 {
-    public sealed partial class GameManager : MonoBehaviour, ITimeController
+    public sealed class GameManager : MonoBehaviour
     {
         [Header("Camera")]
         [SerializeField] private CameraFollow _camera;
@@ -17,13 +18,12 @@ namespace Gameplay
 
         [Header("UI Ref's")]
         [SerializeField] private Timer _timer;
+        [SerializeField] private TimerView _timerText;
+        [SerializeField] private RewardView _rewardText;
         [SerializeField] private GameObject _gameOverText;
         [SerializeField] private HintText _monologueHint;
         [SerializeField] private HintText _inputHint;
         [SerializeField] private GameObject _winGameText;
-        [SerializeField] private Text _timerText;
-
-        private float _myTime;
 
         //TODO - move to a seperate class?
         [SerializeField] private Transform _spawnPoint;
@@ -32,17 +32,6 @@ namespace Gameplay
         [SerializeField] private Exit _exit;
         [SerializeField] private EnviromentalHazard _hazard;
         [SerializeField] private Enemy[] _enemies;
-
-        //TODO - move implementation of ITimeController into a seperate class?
-        float ITimeController.Time
-        {
-            get => _myTime;
-            set
-            {
-                _myTime = value;
-                _timerText.text = value.ToString("f2");
-            }
-        }
 
         public void GoToMainMenu()
         {
@@ -68,7 +57,7 @@ namespace Gameplay
 
         private void Awake()
         {
-            _timerText.gameObject.SetActive(false);
+            _timerText.Show(false);
             _camera.enabled = false;
             _gameOverText.SetActive(false);
             _monologueHint.Hide();
@@ -89,17 +78,13 @@ namespace Gameplay
                 var player = CreatePlayer();
                 SetPlayer(player);
                 //TODO - wait for player to land?
-                _timerText.gameObject.SetActive(true);
-                var gameplay = new Gameplay(player, _hazard, _monologueHint, _exit, _timer, this);
+                _timerText.Show(true);
+                var gameplay = new Gameplay(player, _hazard, _monologueHint, _exit, _timer, _timerText);
                 gameplay.OnFinished(OnGameOver);
 
                 void OnGameOver(bool hasWon)
                 {
                     SetPlayer(null);
-                    if (hasWon)
-                    {
-                        player.Release();
-                    }
 
                     _inputHint.ShowRestartHint();
                     if (!hasWon)
@@ -110,6 +95,9 @@ namespace Gameplay
                     {
                         AudioManager.Instance.PlayWinSound();
                         _winGameText.SetActive(true);
+                        StartCoroutine(ShowScoreRoutine(player, _timerText));
+
+                        player.Release();
                     }
 
                     new GameOver(_timer).OnFinished(RestartGame);
@@ -120,6 +108,41 @@ namespace Gameplay
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
             }
+        }
+
+        private IEnumerator ShowScoreRoutine(IPlayer player, ITimeController timer)
+        {
+            var itemsValue = player.Items.Sum(any => any.Value);
+            var totalTime = timer.Time;
+            var reward = CalculateReward(totalTime);
+            yield return new WaitForSecondsRealtime(2);
+
+            _rewardText.Reward = 0;
+            while (timer.Time >= 0.0001f)
+            {
+                yield return null;
+                var delta = Time.deltaTime * 10f;
+                timer.Time -= delta;
+                _rewardText.Reward += (int)(reward * delta / totalTime);
+                if (_rewardText.Reward > reward)
+                {
+                    _rewardText.Reward = reward;
+                }
+            }
+
+            var itemsCollected = player.Items.Count(any => any.Value > 0);
+            for (var i = 1; i <= itemsCollected; ++i)
+            {
+                yield return null;
+                _rewardText.Reward = reward + itemsValue * i / itemsCollected;
+            }
+        }
+
+        //TODO - move to a different class?
+        private int CalculateReward(float time)
+        {
+            var score = (int)((time - 41) * 10);
+            return score > 0 ? score : 0;
         }
     }
 }

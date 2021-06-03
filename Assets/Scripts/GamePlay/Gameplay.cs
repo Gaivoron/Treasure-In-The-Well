@@ -58,7 +58,6 @@ namespace Gameplay
 
         private void PlaySound(IItem item)
         {
-            //TODO - play various sounds depending on item's value.
             if (item.Keys.Any(key => key == ItemKeys.QuestItem))
             {
                 AudioManager.Instance.PlayQuestItemSound();
@@ -74,6 +73,7 @@ namespace Gameplay
             switch (key)
             {
                 case ItemKeys.QuestItem:
+                    //TODO - also need to hide that hint once player jumps up.
                     _monologueHint.ShowMoveUpHint();
                     break;
 
@@ -95,6 +95,7 @@ namespace Gameplay
 
         private void OnFinished(bool hasWon)
         {
+            _monologueHint.Hide();
             _hazard?.Deactivate();
 
             _player.ItemTaken -= OnItemTaken;

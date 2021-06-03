@@ -67,6 +67,9 @@ namespace Gameplay.Player
 
         Vector2 IPlayer.Position => transform.position;
 
+        IEnumerable<IItem> IPlayer.Items => _items;
+
+        //TODO - move to an extension method?
         public bool HasQuestItem { get; private set; }
 
         bool IPlayer.TakeItem(IItem item)

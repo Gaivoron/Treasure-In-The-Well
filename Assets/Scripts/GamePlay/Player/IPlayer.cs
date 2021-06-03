@@ -1,5 +1,6 @@
 ﻿using Gameplay.Items;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gameplay.Player
@@ -16,6 +17,8 @@ namespace Gameplay.Player
         int Health { get; set; }
 
         Vector2 Position { get; }
+
+        IEnumerable<IItem> Items { get; }
 
         bool TakeItem(IItem item);
         void Release();
