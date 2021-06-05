@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 13756978}
   - component: {fileID: 13756979}
   m_Layer: 8
-  m_Name: Point Light 2D
+  m_Name: Light01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,10 +152,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13756977}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.8819137, y: 0.000014955392, z: 0}
+  m_LocalPosition: {x: -6.881913, y: 0.000014955392, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
+  m_Father: {fileID: 1700817452}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &13756979
@@ -1493,7 +1493,7 @@ GameObject:
   - component: {fileID: 298063788}
   - component: {fileID: 298063789}
   m_Layer: 8
-  m_Name: Point Light 2D (2)
+  m_Name: Light04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1507,11 +1507,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298063787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.428967, y: 0, z: 0}
+  m_LocalPosition: {x: 3.4289668, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
-  m_RootOrder: 6
+  m_Father: {fileID: 1700817452}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &298063789
 MonoBehaviour:
@@ -2328,6 +2328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b831a6e1dfd400c41a86151a20fb0e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _previewSpeed: 15
+  _previewAcceleration: 2
+  _previewPause: 5
   _minX: 0
   _maxX: 0
   _minY: -112.3
@@ -4314,8 +4317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 519420030}
   _bounds: {fileID: 519420034}
-  _previewSpeed: 15
-  _previewPause: 5
   _timer: {fileID: 1013146496}
   _timerText: {fileID: 776571477}
   _rewardText: {fileID: 289510071}
@@ -4370,7 +4371,7 @@ GameObject:
   - component: {fileID: 1017426740}
   - component: {fileID: 1017426741}
   m_Layer: 0
-  m_Name: 2d-lava-clipart-2
+  m_Name: LavaTop01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4384,10 +4385,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017426739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.881914, y: 0.00001707855, z: 0}
+  m_LocalPosition: {x: -6.8819137, y: 0.000014955392, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
+  m_Father: {fileID: 1700817452}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -360}
 --- !u!212 &1017426741
@@ -4451,7 +4452,7 @@ GameObject:
   - component: {fileID: 1051570805}
   - component: {fileID: 1051570806}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LavaMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4464,12 +4465,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051570804}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13, y: -6.74, z: 0}
-  m_LocalScale: {x: 5.26, y: 5.42, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.12999998, y: -6.7399964, z: 0}
+  m_LocalScale: {x: 5.26, y: 5.4199996, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
-  m_RootOrder: 8
+  m_Father: {fileID: 1700817452}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1051570806
 SpriteRenderer:
@@ -4972,7 +4973,7 @@ GameObject:
   - component: {fileID: 1199058739}
   - component: {fileID: 1199058740}
   m_Layer: 8
-  m_Name: Point Light 2D (2)
+  m_Name: Light05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4986,11 +4987,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199058738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.147764, y: -0.000019940522, z: 0}
+  m_LocalPosition: {x: 7.1477637, y: -0.000019940522, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
-  m_RootOrder: 5
+  m_Father: {fileID: 1700817452}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1199058740
 MonoBehaviour:
@@ -5341,7 +5342,7 @@ GameObject:
   - component: {fileID: 1345748677}
   - component: {fileID: 1345748678}
   m_Layer: 8
-  m_Name: Point Light 2D (1)
+  m_Name: Light03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5358,8 +5359,8 @@ Transform:
   m_LocalPosition: {x: 0.13896723, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
-  m_RootOrder: 7
+  m_Father: {fileID: 1700817452}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1345748678
 MonoBehaviour:
@@ -5602,7 +5603,7 @@ GameObject:
   - component: {fileID: 1389463151}
   - component: {fileID: 1389463150}
   m_Layer: 0
-  m_Name: LavaContainer
+  m_Name: LavaController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5648,7 +5649,7 @@ GameObject:
   - component: {fileID: 1398109319}
   - component: {fileID: 1398109320}
   m_Layer: 0
-  m_Name: 2d-lava-clipart-2 (1)
+  m_Name: LavaTop02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5662,10 +5663,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398109318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.13896725, y: 0, z: 0}
+  m_LocalPosition: {x: 0.13896723, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
+  m_Father: {fileID: 1700817452}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -360}
 --- !u!212 &1398109320
@@ -5943,15 +5944,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1017426740}
-  - {fileID: 1398109319}
-  - {fileID: 1878293020}
-  - {fileID: 1564593616}
-  - {fileID: 13756978}
-  - {fileID: 1199058739}
-  - {fileID: 298063788}
-  - {fileID: 1345748677}
-  - {fileID: 1051570805}
+  - {fileID: 1700817452}
   m_Father: {fileID: 1389463151}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6243,7 +6236,7 @@ GameObject:
   - component: {fileID: 1564593616}
   - component: {fileID: 1564593617}
   m_Layer: 8
-  m_Name: Point Light 2D (1)
+  m_Name: Light02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6257,11 +6250,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564593615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.551914, y: 0.000014955392, z: 0}
+  m_LocalPosition: {x: -3.5519137, y: 0.000014955392, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
-  m_RootOrder: 3
+  m_Father: {fileID: 1700817452}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1564593617
 MonoBehaviour:
@@ -6840,6 +6833,62 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b65df108c1df38489f6f89bbc83b3c7, type: 3}
+--- !u!1 &1700817451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700817452}
+  - component: {fileID: 1700817453}
+  m_Layer: 0
+  m_Name: LavaContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1700817452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700817451}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1017426740}
+  - {fileID: 1398109319}
+  - {fileID: 1878293020}
+  - {fileID: 1051570805}
+  - {fileID: 13756978}
+  - {fileID: 1564593616}
+  - {fileID: 1345748677}
+  - {fileID: 298063788}
+  - {fileID: 1199058739}
+  m_Father: {fileID: 1488253016}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &1700817453
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700817451}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5939f0911fb6a56488ce09d6b43b74f2, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 5939f0911fb6a56488ce09d6b43b74f2, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &1755074885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3603700590737210361, guid: 2b65df108c1df38489f6f89bbc83b3c7,
@@ -6944,7 +6993,7 @@ GameObject:
   - component: {fileID: 1878293020}
   - component: {fileID: 1878293021}
   m_Layer: 0
-  m_Name: 2d-lava-clipart-2 (2)
+  m_Name: LavaTop03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6958,10 +7007,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878293019}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.147765, y: -0.0000177383, z: 0}
+  m_LocalPosition: {x: 7.147764, y: -0.000019940522, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1488253016}
+  m_Father: {fileID: 1700817452}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -360}
 --- !u!212 &1878293021

@@ -13,8 +13,6 @@ namespace Gameplay
         [Header("Camera")]
         [SerializeField] private CameraFollow _camera;
         [SerializeField] private CameraBounds _bounds;
-        [SerializeField] private float _previewSpeed = 20f;
-        [SerializeField] private float _previewPause = 5f;
 
         [Header("UI Ref's")]
         [SerializeField] private Timer _timer;
@@ -64,7 +62,7 @@ namespace Gameplay
             _inputHint.Hide();
             _winGameText.SetActive(false);
 
-            var previewMode = new LevelPreviewMode(_timer, _inputHint, _monologueHint, _bounds.transform, _bounds, _previewSpeed);
+            var previewMode = new LevelPreviewMode(_timer, _inputHint, _monologueHint, Camera.main.transform, _bounds);
             previewMode.OnFinished(OnLevelShown);
 
             void OnLevelShown(bool _)

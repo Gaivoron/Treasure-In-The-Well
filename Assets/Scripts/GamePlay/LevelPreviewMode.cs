@@ -14,10 +14,9 @@ namespace Gameplay
         private readonly HintText _inputHint;
         private readonly HintText _monologueHint;
         private readonly Transform _camera;
-        private readonly ICameraBounds _bounds;
-        private readonly float _speed;
+        private readonly ICameraSettings _settings;
 
-        public LevelPreviewMode(ITimer timer, HintText inputHint, HintText monologueHint, Transform camera, ICameraBounds bounds, float speed)
+        public LevelPreviewMode(ITimer timer, HintText inputHint, HintText monologueHint, Transform camera, ICameraSettings settings)
         {
             _timer = timer;
             _timer.TimePassed += MoveDown;
@@ -29,12 +28,10 @@ namespace Gameplay
             _monologueHint.ShowInterludeHint();
 
             _camera = camera;
-            _bounds = bounds;
-
-            _speed = speed;
+            _settings = settings;
 
             var position = _camera.position;
-            position.y = _bounds.MaxY;
+            position.y = _settings.Bounds.MaxY;
             _camera.position = position;
         }
 
@@ -43,8 +40,8 @@ namespace Gameplay
             var position = _camera.transform.position;
             position.y -= GetSpeed() * time;
 
-            _camera.position = _bounds.Clamp(position);
-            if (Mathf.Abs(_camera.position.y - _bounds.MinY) <= Epsilon)
+            _camera.position = _settings.Bounds.Clamp(position);
+            if (Mathf.Abs(_camera.position.y - _settings.Bounds.MinY) <= Epsilon)
             {
                 _timer.TimePassed -= MoveDown;
                 _timer.TimePassed += MoveUp;
@@ -56,8 +53,8 @@ namespace Gameplay
             var position = _camera.transform.position;
             position.y += GetSpeed() * time;
 
-            _camera.position = _bounds.Clamp(position);
-            if (Mathf.Abs(_camera.position.y - _bounds.MaxY) <= Epsilon)
+            _camera.position = _settings.Bounds.Clamp(position);
+            if (Mathf.Abs(_camera.position.y - _settings.Bounds.MaxY) <= Epsilon)
             {
                 _timer.TimePassed -= MoveUp;
                 _inputHint.Hide();
@@ -66,6 +63,6 @@ namespace Gameplay
             }
         }
 
-        private float GetSpeed() => Input.GetKey(KeyCode.Space) ? _speed * 2 : _speed;
+        private float GetSpeed() => Input.GetKey(KeyCode.Space) ? _settings.PreviewSpeedAccelerated : _settings.PreviewSpeedNormal;
     }
 }
