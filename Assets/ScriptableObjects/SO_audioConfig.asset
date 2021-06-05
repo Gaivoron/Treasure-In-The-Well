@@ -68,3 +68,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9c4fc7ae5e1c59e408c6830a3aa2cb8d, type: 3}
     - {fileID: 8300000, guid: 6d27b87c36db1234fbb3e7dfb65eee00, type: 3}
     - {fileID: 8300000, guid: 27b02825c65c2f8409797e0522ce3f37, type: 3}
+  - _key: lava
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 0f016b6cf44343740876e0333d5df5d5, type: 3}
+    - {fileID: 8300000, guid: b9e8bcee8c4cc0b40a2fc19a9fd3da55, type: 3}
+    - {fileID: 8300000, guid: 65a85769c169c164ca3c59413c2ff1e6, type: 3}
+    - {fileID: 8300000, guid: d95a7e12db10bb6439dba36a0bf272a4, type: 3}

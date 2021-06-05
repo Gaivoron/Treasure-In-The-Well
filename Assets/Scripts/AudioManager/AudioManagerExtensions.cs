@@ -29,6 +29,14 @@
             sound?.Play();
             return sound;
         }
+
+        public static ISound PlayLavaSplashSound(this IAudioManager manager)
+        {
+            var sound = manager.Get("lava");
+            sound?.Play();
+            return sound;
+        }
+
         public static ISound PlayDeathSound(this IAudioManager manager)
         {
             var sound = manager.Get("death");
