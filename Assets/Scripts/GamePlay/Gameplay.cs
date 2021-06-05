@@ -12,12 +12,12 @@ namespace Gameplay
 
         private readonly IHintText _monologueHint;
         private readonly ITimer _timer;
-        private readonly ITimeController _timeController;
+        private readonly ITimerView _timeController;
         private readonly IPortal _exit;
         private readonly IPlayer _player;
         private readonly IEnviromentalHazard _hazard;
 
-        public Gameplay(IPlayer player, IEnviromentalHazard hazard, IHintText monologueHint, IPortal exit, ITimer timer, ITimeController timeController)
+        public Gameplay(IPlayer player, IEnviromentalHazard hazard, IHintText monologueHint, IPortal exit, ITimer timer, ITimerView timeController)
         {
             _exit = exit;
             _exit.Passed += OnPlayerPassed;

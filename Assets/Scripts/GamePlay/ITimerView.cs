@@ -1,6 +1,6 @@
 ﻿namespace Gameplay
 {
-    public interface ITimeController
+    public interface ITimerView
     {
         float Time { get; set; }
     }

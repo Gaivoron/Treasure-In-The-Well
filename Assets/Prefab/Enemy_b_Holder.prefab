@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4253437014359887387}
   - component: {fileID: 4418932229296118664}
   m_Layer: 0
-  m_Name: EyeLight
+  m_Name: EyeLight_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4112967388919332696}
   - component: {fileID: 8538791274725110712}
   m_Layer: 0
-  m_Name: EyeLight (1)
+  m_Name: EyeLight_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,6 +413,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2.5
   _radiusAgro: 15
+  _trails:
+  - {fileID: 927550412289045581}
+  - {fileID: 8051451752202133802}
 --- !u!95 &5989850241596671313
 Animator:
   serializedVersion: 3

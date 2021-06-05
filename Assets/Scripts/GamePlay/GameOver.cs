@@ -3,15 +3,22 @@ using System;
 
 namespace Gameplay
 {
-    public sealed class GameOver : IGameMode
+    public abstract class GameOver : IGameMode
     {
         public event Action<bool> Finished;
 
         private readonly ITimer _timer;
+        private readonly IHintText _hint;
 
-        public GameOver(ITimer timer)
+        protected GameOver(ITimer timer, IHintText inputHint)
         {
             _timer = timer;
+            _hint = inputHint;
+        }
+
+        protected void RegisterTimer()
+        {
+            _hint.ShowRestartHint();
             _timer.TimePassed += OnTimePassed;
         }
 

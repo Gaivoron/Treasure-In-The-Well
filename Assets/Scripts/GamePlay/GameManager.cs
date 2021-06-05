@@ -2,9 +2,6 @@
 using UnityEngine.SceneManagement;
 using Gameplay.Player;
 using Gameplay.Cameras;
-using AudioManagement;
-using System.Collections;
-using System.Linq;
 
 namespace Gameplay
 {
@@ -83,22 +80,15 @@ namespace Gameplay
                 void OnGameOver(bool hasWon)
                 {
                     SetPlayer(null);
+                    GetGameOverMode(hasWon).OnFinished(RestartGame);
+                }
 
-                    _inputHint.ShowRestartHint();
-                    if (!hasWon)
-                    {
-                        _gameOverText.SetActive(true);
-                    }
-                    else
-                    {
-                        AudioManager.Instance.PlayWinSound();
-                        _winGameText.SetActive(true);
-                        StartCoroutine(ShowScoreRoutine(player, _timerText));
+                IGameMode GetGameOverMode(bool hasWon)
+                {
+                    if (hasWon)
+                        return new VictoryMode(_timer, _inputHint, _winGameText, _rewardText, _timerText, player);
 
-                        player.Release();
-                    }
-
-                    new GameOver(_timer).OnFinished(RestartGame);
+                    return new DefeatMode(_timer, _inputHint, _gameOverText);
                 }
 
                 void RestartGame(bool doRestart)
@@ -106,41 +96,6 @@ namespace Gameplay
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
             }
-        }
-
-        private IEnumerator ShowScoreRoutine(IPlayer player, ITimeController timer)
-        {
-            var itemsValue = player.Items.Sum(any => any.Value);
-            var totalTime = timer.Time;
-            var reward = CalculateReward(totalTime);
-            yield return new WaitForSecondsRealtime(2);
-
-            _rewardText.Reward = 0;
-            while (timer.Time >= 0.0001f)
-            {
-                yield return null;
-                var delta = Time.deltaTime * 10f;
-                timer.Time -= delta;
-                _rewardText.Reward += (int)(reward * delta / totalTime);
-                if (_rewardText.Reward > reward)
-                {
-                    _rewardText.Reward = reward;
-                }
-            }
-
-            var itemsCollected = player.Items.Count(any => any.Value > 0);
-            for (var i = 1; i <= itemsCollected; ++i)
-            {
-                yield return null;
-                _rewardText.Reward = reward + itemsValue * i / itemsCollected;
-            }
-        }
-
-        //TODO - move to a different class?
-        private int CalculateReward(float time)
-        {
-            var score = (int)((time - 41) * 10);
-            return score > 0 ? score : 0;
         }
     }
 }

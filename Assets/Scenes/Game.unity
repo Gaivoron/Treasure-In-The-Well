@@ -2330,7 +2330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _previewSpeed: 15
   _previewAcceleration: 2
-  _previewPause: 1.5
+  _previewPause: 1
   _minX: 0
   _maxX: 0
   _minY: -112.3

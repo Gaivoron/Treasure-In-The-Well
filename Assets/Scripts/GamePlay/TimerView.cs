@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 namespace Gameplay
 {
-    public sealed class TimerView : MonoBehaviour, ITimeController
+    public sealed class TimerView : MonoBehaviour, ITimerView
     {
         [SerializeField] private Text _timerText;
 
         private float _myTime = 0;
 
-        float ITimeController.Time
+        float ITimerView.Time
         {
             get => _myTime;
             set
@@ -24,7 +24,7 @@ namespace Gameplay
             }
         }
 
-        internal void Show(bool isVisible)
+        public void Show(bool isVisible)
         {
             gameObject.SetActive(isVisible);
         }

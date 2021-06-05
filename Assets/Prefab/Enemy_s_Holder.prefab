@@ -126,6 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _radiusAgro: 20
+  _trails:
+  - {fileID: 5981184874442267145}
+  - {fileID: 7853705716987863305}
 --- !u!95 &1287077198060289007
 Animator:
   serializedVersion: 3
@@ -187,7 +190,7 @@ GameObject:
   - component: {fileID: 8329029603565399970}
   - component: {fileID: 1387809619392863340}
   m_Layer: 0
-  m_Name: EyeLight
+  m_Name: EyeLight_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +318,7 @@ GameObject:
   - component: {fileID: 2056780078863151757}
   - component: {fileID: 2233713502801184807}
   m_Layer: 0
-  m_Name: EyeLight
+  m_Name: EyeLight_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
