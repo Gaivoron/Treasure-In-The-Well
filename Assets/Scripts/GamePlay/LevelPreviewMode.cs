@@ -66,7 +66,30 @@ namespace Gameplay
                 if (Mathf.Abs(_camera.position.y - _settings.Bounds.MinY) <= Epsilon)
                 {
                     _timer.TimePassed -= MoveDown;
-                    //TODO - show target at first.
+                    FocusOnTarget();
+                }
+            }
+        }
+
+        private void FocusOnTarget()
+        {
+            UpdateHintVisibility(false);
+            var duration = _settings.PreviewPause;
+
+            if (duration <= 0)
+            {
+                ShowAcension();
+                return;
+            }
+
+            _timer.TimePassed += Wait;
+
+            void Wait(float time)
+            {
+                duration -= time;
+                if (duration <= 0)
+                {
+                    _timer.TimePassed -= Wait;
                     ShowAcension();
                 }
             }
