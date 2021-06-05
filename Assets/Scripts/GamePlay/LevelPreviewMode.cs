@@ -11,15 +11,18 @@ namespace Gameplay
         public event Action<bool> Finished;
 
         private readonly ITimer _timer;
-        private readonly HintText _inputHint;
-        private readonly HintText _monologueHint;
+        private readonly IHintText _inputHint;
+        private readonly IHintText _monologueHint;
         private readonly Transform _camera;
         private readonly ICameraSettings _settings;
 
-        public LevelPreviewMode(ITimer timer, HintText inputHint, HintText monologueHint, Transform camera, ICameraSettings settings)
+        private float Speed => HasAccelerationInput ? _settings.PreviewSpeedAccelerated : _settings.PreviewSpeedNormal;
+
+        private bool HasAccelerationInput => Input.GetKey(KeyCode.Space);
+
+        public LevelPreviewMode(ITimer timer, IHintText inputHint, IHintText monologueHint, Transform camera, ICameraSettings settings)
         {
             _timer = timer;
-            _timer.TimePassed += MoveDown;
 
             _inputHint = inputHint;
             _inputHint.ShowSkipHint();
@@ -33,36 +36,63 @@ namespace Gameplay
             var position = _camera.position;
             position.y = _settings.Bounds.MaxY;
             _camera.position = position;
+
+            ShowDescention();
         }
 
-        private void MoveDown(float time)
+        private void UpdateHintVisibility()
         {
-            var position = _camera.transform.position;
-            position.y -= GetSpeed() * time;
+            UpdateHintVisibility(!HasAccelerationInput);
+        }
 
-            _camera.position = _settings.Bounds.Clamp(position);
-            if (Mathf.Abs(_camera.position.y - _settings.Bounds.MinY) <= Epsilon)
+        private void UpdateHintVisibility(bool isVisible)
+        {
+            _inputHint.Show(isVisible);
+        }
+
+        private void MoveCamera(Vector3 delta)
+        {
+            _camera.position = _settings.Bounds.Clamp(_camera.position + delta);
+        }
+
+        private void ShowDescention()
+        {
+            _timer.TimePassed += MoveDown;
+
+            void MoveDown(float time)
             {
-                _timer.TimePassed -= MoveDown;
-                _timer.TimePassed += MoveUp;
+                UpdateHintVisibility();
+                MoveCamera(Vector3.down * Speed * time);
+                if (Mathf.Abs(_camera.position.y - _settings.Bounds.MinY) <= Epsilon)
+                {
+                    _timer.TimePassed -= MoveDown;
+                    //TODO - show target at first.
+                    ShowAcension();
+                }
             }
         }
 
-        private void MoveUp(float time)
+        private void ShowAcension()
         {
-            var position = _camera.transform.position;
-            position.y += GetSpeed() * time;
+            _timer.TimePassed += MoveUp;
 
-            _camera.position = _settings.Bounds.Clamp(position);
-            if (Mathf.Abs(_camera.position.y - _settings.Bounds.MaxY) <= Epsilon)
+            void MoveUp(float time)
             {
-                _timer.TimePassed -= MoveUp;
-                _inputHint.Hide();
-                _monologueHint.Hide();
-                Finished?.Invoke(true);
+                UpdateHintVisibility();
+                MoveCamera(Vector3.up * Speed * time);
+                if (Mathf.Abs(_camera.position.y - _settings.Bounds.MaxY) <= Epsilon)
+                {
+                    _timer.TimePassed -= MoveUp;
+                    Finish();
+                }
             }
         }
 
-        private float GetSpeed() => Input.GetKey(KeyCode.Space) ? _settings.PreviewSpeedAccelerated : _settings.PreviewSpeedNormal;
+        private void Finish()
+        {
+            _inputHint.Hide();
+            _monologueHint.Hide();
+            Finished?.Invoke(true);
+        }
     }
 }

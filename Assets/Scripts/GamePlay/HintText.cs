@@ -3,23 +3,12 @@ using UnityEngine.UI;
 
 namespace Gameplay
 {
-    //TODO - should implement interface.
-    public sealed class HintText : MonoBehaviour
+    public sealed class HintText : MonoBehaviour, IHintText
     {
         [SerializeField]
         private Text _text;
 
-        public void Show(string text)
-        {
-            _text.text = text;
-            Show(true);
-        }
-
-        public void Hide()
-        {
-            Show(false);
-        }
-
-        private void Show(bool isVisble) => gameObject.SetActive(isVisble);
+        public void Show(bool isVisble) => gameObject.SetActive(isVisble);
+        public void SetText(string text) => _text.text = text;
     }
 }

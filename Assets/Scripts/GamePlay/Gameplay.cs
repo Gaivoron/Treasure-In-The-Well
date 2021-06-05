@@ -10,14 +10,14 @@ namespace Gameplay
     {
         public event Action<bool> Finished;
 
-        private readonly HintText _monologueHint;
+        private readonly IHintText _monologueHint;
         private readonly ITimer _timer;
         private readonly ITimeController _timeController;
         private readonly IPortal _exit;
         private readonly IPlayer _player;
         private readonly IEnviromentalHazard _hazard;
 
-        public Gameplay(IPlayer player, IEnviromentalHazard hazard, HintText monologueHint, IPortal exit, ITimer timer, ITimeController timeController)
+        public Gameplay(IPlayer player, IEnviromentalHazard hazard, IHintText monologueHint, IPortal exit, ITimer timer, ITimeController timeController)
         {
             _exit = exit;
             _exit.Passed += OnPlayerPassed;

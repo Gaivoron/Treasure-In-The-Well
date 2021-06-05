@@ -6,12 +6,12 @@ namespace Gameplay
     public sealed class ReadyPlayerMode : IGameMode
     {
         private readonly ITimer _timer;
-        private readonly HintText _monologueHint;
-        private readonly HintText _inputHint;
+        private readonly IHintText _monologueHint;
+        private readonly IHintText _inputHint;
 
         public event Action<bool> Finished;
 
-        public ReadyPlayerMode(ITimer timer, HintText inputHint, HintText monologueHint)
+        public ReadyPlayerMode(ITimer timer, IHintText inputHint, IHintText monologueHint)
         {
             _inputHint = inputHint;
             _inputHint.ShowStartHint();
