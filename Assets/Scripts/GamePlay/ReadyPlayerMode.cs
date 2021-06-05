@@ -14,7 +14,8 @@ namespace Gameplay
         public ReadyPlayerMode(ITimer timer, IHintText inputHint, IHintText monologueHint)
         {
             _inputHint = inputHint;
-            _inputHint.ShowStartHint();
+            var isPressed = Input.GetKey(KeyCode.Space) || Input.GetKeyDown(KeyCode.Space);
+            _inputHint.ShowStartHint(isPressed);
 
             _monologueHint = monologueHint;
             _monologueHint.ShowPrepareHint();

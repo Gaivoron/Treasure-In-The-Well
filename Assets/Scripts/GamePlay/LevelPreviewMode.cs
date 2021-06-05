@@ -25,10 +25,9 @@ namespace Gameplay
             _timer = timer;
 
             _inputHint = inputHint;
-            _inputHint.ShowSkipHint();
+            _inputHint.ShowFastForwardHint();
 
             _monologueHint = monologueHint;
-            _monologueHint.ShowInterludeHint();
 
             _camera = camera;
             _settings = settings;
@@ -57,6 +56,7 @@ namespace Gameplay
 
         private void ShowDescention()
         {
+            _monologueHint.ShowInterludePart1();
             _timer.TimePassed += MoveDown;
 
             void MoveDown(float time)
@@ -73,9 +73,10 @@ namespace Gameplay
 
         private void FocusOnTarget()
         {
+            _monologueHint.Hide();
             UpdateHintVisibility(false);
-            var duration = _settings.PreviewPause;
 
+            var duration = _settings.PreviewPause;
             if (duration <= 0)
             {
                 ShowAcension();
@@ -97,6 +98,7 @@ namespace Gameplay
 
         private void ShowAcension()
         {
+            _monologueHint.ShowInterludePart2();
             _timer.TimePassed += MoveUp;
 
             void MoveUp(float time)
