@@ -37,6 +37,14 @@ namespace Gameplay.Player
             JumpInput();
         }
 
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.tag == "Platform" && _playerMove.IsGrounded)
+            {
+                AudioManager.Instance.PlayImpact();
+            }
+        }
+
         private void FixedUpdate()
         {
             if (_footsteps != null && !_footsteps.IsPlaying)

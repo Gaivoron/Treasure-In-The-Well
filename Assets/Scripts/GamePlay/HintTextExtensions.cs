@@ -23,10 +23,12 @@
         }
         public static void ShowFastForwardHint(this IHintText hint) => hint.Show("Hold  \"SPACEBAR\"  to  FAST FORWARD");
 
-        public static void ShowInterludePart1(this IHintText hint) => hint.Show("Oh  no!  I've  dropped  my  MAGIC  RING  into  that  cursed  WELL!");
-        public static void ShowInterludePart2(this IHintText hint) => hint.Show("I  am  willing  to  pay  handsomely  for  it's  RETRIEVAL.");
+        public static void ShowInterludePart1(this IHintText hint) => hint.Show("Oh  no!  I've  dropped  my  MAGIC  RING  into  that  CURSED WELL!");
+        public static void ShowInterludePart2(this IHintText hint) => hint.Show("I  am  willing  to  pay  handsomely  for  it's  RETRIEVAL");
         public static void ShowPrepareHint(this IHintText hint) => hint.Show("Are  you  brave enough  to  take  this  task?");
 
-        public static void ShowMoveUpHint(this IHintText hint) => hint.Show("Now  bring  it  back  to  me.\nAnd  be  QUICK..");
+        public static void ShowMoveUpHint(this IHintText hint) => hint.Show("Now  bring  it  back  to  me.\nAnd  be  QUICK...");
+
+        public static void ShowRewardHint(this IHintText hint) => hint.Show("Let's  see  how  much  I  can  PAY  you  for  your  SERVICE...");
     }
 }

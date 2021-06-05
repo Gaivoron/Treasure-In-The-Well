@@ -57,6 +57,11 @@ namespace Gameplay.Player
                     return;
                 }
 
+                if (_currentHealth > value)
+                {
+                    AudioManager.Instance.PlayInjurySound();
+                }
+
                 _currentHealth = value;
                 if (_currentHealth == 0)
                 {
@@ -167,7 +172,6 @@ namespace Gameplay.Player
         private void OnPlayerDied()
         {
             playerMovement._rb2d.bodyType = RigidbodyType2D.Static;
-            AudioManager.Instance.PlayDeathSound();
             myAnim.Play("Death");
             Died?.Invoke();
         }

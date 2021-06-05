@@ -2,9 +2,30 @@
 {
     public static class AudioManagerExtensions
     {
-        public static ISound PlayWinSound(this IAudioManager manager)
+        public static ISound PlayMenuBackSound(this IAudioManager manager)
         {
-            var sound = manager.Get("win");
+            var sound = manager.Get("menu_back");
+            sound?.Play();
+            return sound;
+        }
+
+        public static ISound PlayVictorySound(this IAudioManager manager)
+        {
+            var sound = manager.Get("victory");
+            sound?.Play();
+            return sound;
+        }
+
+        public static ISound PlayDefeatSound(this IAudioManager manager)
+        {
+            var sound = manager.Get("defeat");
+            sound?.Play();
+            return sound;
+        }
+
+        public static ISound PlayEnemyAlertSound(this IAudioManager manager)
+        {
+            var sound = manager.Get("enemy_alert");
             sound?.Play();
             return sound;
         }
@@ -32,14 +53,14 @@
 
         public static ISound PlayLavaSplashSound(this IAudioManager manager)
         {
-            var sound = manager.Get("lava");
+            var sound = manager.Get("lava_splash");
             sound?.Play();
             return sound;
         }
 
-        public static ISound PlayDeathSound(this IAudioManager manager)
+        public static ISound PlayInjurySound(this IAudioManager manager)
         {
-            var sound = manager.Get("death");
+            var sound = manager.Get("injury");
             sound?.Play();
             return sound;
         }
@@ -47,6 +68,13 @@
         public static ISound PlayFootSteps(this IAudioManager manager)
         {
             var sound = manager.Get("foot_steps");
+            sound?.Play();
+            return sound;
+        }
+
+        public static ISound PlayImpact(this IAudioManager manager)
+        {
+            var sound = manager.Get("impact");
             sound?.Play();
             return sound;
         }

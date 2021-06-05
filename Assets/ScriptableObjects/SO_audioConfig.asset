@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_audioConfig
   m_EditorClassIdentifier: 
   _sounds:
-  - _key: win
+  - _key: victory
     _pitch:
       _minValue: 1
       _maxValue: 1
@@ -34,7 +34,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: f91902adc047569498ceaec7d83686ea, type: 3}
     - {fileID: 8300000, guid: f67fefaf5bb3eb84fa6ec45a0ca1c977, type: 3}
     - {fileID: 8300000, guid: 8832cab0a285c4446b6b0a8c94fbc53b, type: 3}
-  - _key: death
+  - _key: injury
     _pitch:
       _minValue: 1
       _maxValue: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9c4fc7ae5e1c59e408c6830a3aa2cb8d, type: 3}
     - {fileID: 8300000, guid: 6d27b87c36db1234fbb3e7dfb65eee00, type: 3}
     - {fileID: 8300000, guid: 27b02825c65c2f8409797e0522ce3f37, type: 3}
-  - _key: lava
+  - _key: lava_splash
     _pitch:
       _minValue: 1
       _maxValue: 1
@@ -77,3 +77,30 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b9e8bcee8c4cc0b40a2fc19a9fd3da55, type: 3}
     - {fileID: 8300000, guid: 65a85769c169c164ca3c59413c2ff1e6, type: 3}
     - {fileID: 8300000, guid: d95a7e12db10bb6439dba36a0bf272a4, type: 3}
+  - _key: impact
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: a269c01ca8e203d4b938e8e3ba10e938, type: 3}
+    - {fileID: 8300000, guid: 4a1399cbcdf066d4885843794a17a4e8, type: 3}
+  - _key: enemy_alert
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 553cdaecb0fc4df4786ff384cd06356a, type: 3}
+    - {fileID: 8300000, guid: f94751bae46af8b4b82154ca7d4e8647, type: 3}
+  - _key: defeat
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: f3763e0d1f36e3343b688d09626aa178, type: 3}
+  - _key: menu_back
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 81687e19c951e1b41ae09fc602453bc8, type: 3}
+    - {fileID: 8300000, guid: db004870745ab964faa97be9f47664bc, type: 3}

@@ -1,6 +1,7 @@
 ﻿using Gameplay.Player;
 using UnityEngine;
 using System;
+using AudioManagement;
 
 public sealed class Enemy : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public sealed class Enemy : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, _radiusAgro);
+    }
+
     private void Awake()
     {
         HasTarget = false;
@@ -57,7 +63,10 @@ public sealed class Enemy : MonoBehaviour
 
     private void OnTargetObtained(bool hasTarget)
     {
-        //TODO - play sound.
+        if (hasTarget)
+        {
+            AudioManager.Instance.PlayEnemyAlertSound();
+        }
         ShowTrails(hasTarget);
     }
 

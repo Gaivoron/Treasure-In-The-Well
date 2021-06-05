@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using AudioManagement;
+using UnityEngine;
 
 namespace Gameplay
 {
@@ -7,6 +8,7 @@ namespace Gameplay
         public DefeatMode(ITimer timer, IHintText inputHint, GameObject _gameOverText)
             : base(timer, inputHint)
         {
+            AudioManager.Instance.PlayDefeatSound();
             _gameOverText.SetActive(true);
             RegisterTimer();
         }

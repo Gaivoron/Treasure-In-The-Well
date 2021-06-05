@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using Gameplay.Player;
 using Gameplay.Cameras;
+using AudioManagement;
 
 namespace Gameplay
 {
@@ -30,6 +31,7 @@ namespace Gameplay
 
         public void GoToMainMenu()
         {
+            AudioManager.Instance.PlayMenuBackSound();
             SceneManager.LoadScene("MainMenu");
         }
 
@@ -86,7 +88,7 @@ namespace Gameplay
                 IGameMode GetGameOverMode(bool hasWon)
                 {
                     if (hasWon)
-                        return new VictoryMode(_timer, _inputHint, _winGameText, _rewardText, _timerText, player);
+                        return new VictoryMode(_timer, _inputHint, _monologueHint, _winGameText, _rewardText, _timerText, player);
 
                     return new DefeatMode(_timer, _inputHint, _gameOverText);
                 }

@@ -10,17 +10,19 @@ namespace Gameplay
     {
         private readonly RewardView _rewardText;
 
-        public VictoryMode(ITimer timer, IHintText inputHint, GameObject winGameText, RewardView rewardText, ITimerView timerView, IPlayer player)
+        public VictoryMode(ITimer timer, IHintText inputHint, IHintText monologueHint, GameObject winGameText, RewardView rewardText, ITimerView timerView, IPlayer player)
             : base(timer, inputHint)
         {
             _rewardText = rewardText;
             winGameText.SetActive(true);
-            AudioManager.Instance.PlayWinSound();
-            CoroutineManager.Instance.StartCoroutine(ShowScoreRoutine(player, timerView));
+            AudioManager.Instance.PlayVictorySound();
+            CoroutineManager.Instance.StartCoroutine(ShowScoreRoutine(player, monologueHint, timerView));
         }
 
-        private IEnumerator ShowScoreRoutine(IPlayer player, ITimerView timerView)
+        private IEnumerator ShowScoreRoutine(IPlayer player, IHintText monologueHint, ITimerView timerView)
         {
+            monologueHint.ShowRewardHint();
+
             var itemsValue = player.Items.Sum(any => any.Value);
             var itemsCollected = player.Items.Count(any => any.Value > 0);
             player.Release();
@@ -47,6 +49,7 @@ namespace Gameplay
                 _rewardText.Reward = reward + itemsValue * i / itemsCollected;
             }
 
+            monologueHint.Hide();
             RegisterTimer();
         }
 
