@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2295,8 +2295,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543252451}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710576, w: 0.70710784}
-  m_LocalPosition: {x: 16.89, y: -42.499, z: 0}
-  m_LocalScale: {x: 3.15479, y: 11.454989, z: 1}
+  m_LocalPosition: {x: 16.89, y: -43.521, z: 0}
+  m_LocalScale: {x: 3.2046714, y: 11.454989, z: 1}
   m_Children: []
   m_Father: {fileID: 363410368}
   m_RootOrder: 1
@@ -2364,7 +2364,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16015244, y: 0.0049686506}
+  m_Offset: {x: 0.08484173, y: 0.0049686506}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2375,7 +2375,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 40.50817, y: 0.18133824}
+  m_Size: {x: 40.65879, y: 0.18133824}
   m_EdgeRadius: 0
 --- !u!1 &569142109
 GameObject:
@@ -3090,6 +3090,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 776571475}
+  _timeLimit: 45
+  _timeCritical: 41
 --- !u!1001 &782042694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3775,8 +3777,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883396603}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710576, w: 0.70710784}
-  m_LocalPosition: {x: -16.22, y: -42.504, z: 0}
-  m_LocalScale: {x: 3.154636, y: 11.454984, z: 1}
+  m_LocalPosition: {x: -16.22, y: -43.521, z: 0}
+  m_LocalScale: {x: 3.2006803, y: 11.45499, z: 1}
   m_Children: []
   m_Father: {fileID: 363410368}
   m_RootOrder: 0

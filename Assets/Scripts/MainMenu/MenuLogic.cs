@@ -40,7 +40,7 @@ namespace Menu
         private void Play()
         {
             //TODO - check if player completed first level.
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("GameplayLevel_000");
         }
 
         private void Exit()

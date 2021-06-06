@@ -31,17 +31,26 @@ namespace Gameplay
             yield return new WaitForSecondsRealtime(2);
 
             _rewardText.Reward = 0;
-            while (timerView.Time >= 0.0001f)
+            var localDelta = 0f;
+            while (timerView.Time < timerView.Limit)
             {
                 yield return null;
-                var delta = Time.deltaTime * 10f;
-                timerView.Time -= delta;
-                _rewardText.Reward += (int)(reward * delta / totalTime);
+                localDelta += Time.deltaTime * 5f;
+                localDelta = Mathf.Clamp(localDelta, 0, timerView.Limit - totalTime);
+                timerView.Time += localDelta;
+                if (timerView.Time > timerView.Limit)
+                {
+                    timerView.Time = timerView.Limit;
+                }
+                _rewardText.Reward = (int)(reward * localDelta / (timerView.Limit - totalTime));
                 if (_rewardText.Reward > reward)
                 {
                     _rewardText.Reward = reward;
                 }
             }
+
+            yield return null;
+            _rewardText.Reward = reward;
 
             for (var i = 1; i <= itemsCollected; ++i)
             {
@@ -51,13 +60,12 @@ namespace Gameplay
 
             monologueHint.Hide();
             RegisterTimer();
-        }
 
-        //TODO - move to a different class?
-        private int CalculateReward(float time)
-        {
-            var score = (int)((45 - time) * 2);
-            return score > 0 ? score : 0;
+            int CalculateReward(float time)
+            {
+                var score = (int)((timerView.Limit - time) * 2);
+                return score > 0 ? score : 0;
+            }
         }
     }
 }

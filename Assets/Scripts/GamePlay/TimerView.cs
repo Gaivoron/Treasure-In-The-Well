@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Gameplay
@@ -7,7 +8,13 @@ namespace Gameplay
     {
         [SerializeField] private Text _timerText;
 
+        [Space]
+        [SerializeField] private float _timeLimit;
+        [SerializeField] private float _timeCritical;
+
         private float _myTime = 0;
+
+        float ITimerView.Limit => _timeLimit;
 
         float ITimerView.Time
         {
@@ -20,6 +27,7 @@ namespace Gameplay
                 }
 
                 _myTime = value;
+                _timerText.color = GetColor(value);
                 _timerText.text = value.ToString("f2");
             }
         }
@@ -27,6 +35,22 @@ namespace Gameplay
         public void Show(bool isVisible)
         {
             gameObject.SetActive(isVisible);
+        }
+
+
+        private Color GetColor(float value)
+        {
+            if (value >= _timeLimit)
+            {
+                return Color.red;
+            }
+
+            if (value >= _timeCritical)
+            {
+                return Color.yellow;
+            }
+
+            return Color.green;
         }
     }
 }
