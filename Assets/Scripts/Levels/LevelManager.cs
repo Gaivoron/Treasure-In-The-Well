@@ -23,7 +23,7 @@ namespace Levels
         }
 
         //TODO add level 2;
-        private const ushort LastLevel = 1;
+        private const ushort LastLevel = 2;
 
         public IGameLevel Current
         {
