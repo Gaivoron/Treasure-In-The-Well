@@ -270,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _water: {fileID: 5682828871939620908}
   _speed: 2
+  _acceleration: 0.1
 --- !u!1 &5682828872082067120
 GameObject:
   m_ObjectHideFlags: 0
