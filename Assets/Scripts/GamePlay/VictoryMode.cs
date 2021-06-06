@@ -31,7 +31,7 @@ namespace Gameplay
             var totalTime = timerView.Time;
             var reward = CalculateReward(totalTime);
             ProfileManager.Instance.Profile.SetLevelData(level, (ulong)(reward + itemsValue), totalTime);
-            yield return new WaitForSecondsRealtime(2);
+              yield return new WaitForSecondsRealtime(2);
 
             _rewardText.Reward = 0;
             var localDelta = 0f;

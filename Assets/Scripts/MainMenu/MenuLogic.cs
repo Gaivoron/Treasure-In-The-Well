@@ -10,6 +10,7 @@ namespace Menu
     {
         //TODO - move to a seperate windows controller?
         [SerializeField] private Title _title;
+        [SerializeField] private LevelSelection _selector;
 
         private void Start()
         {
@@ -47,7 +48,7 @@ namespace Menu
             }
             else
             {
-                //TODO - show level selection screen.
+                SelectLevelManualy();
             }
         }
 
@@ -58,6 +59,23 @@ namespace Menu
 #else
             Application.Quit();
 #endif
+        }
+
+        private void SelectLevelManualy()
+        {
+            _selector.Show();
+            _selector.OnOptionChosen(LevelSelected);
+        }
+
+        private void LevelSelected(ushort? level)
+        {
+            if (!level.HasValue)
+            {
+                ShowTitle();
+                return;
+            }
+
+            LevelManager.Instance.Load(level.Value);
         }
     }
 }
