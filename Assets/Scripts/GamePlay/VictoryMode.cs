@@ -36,13 +36,14 @@ namespace Gameplay
             {
                 yield return null;
                 localDelta += Time.deltaTime * 5f;
-                localDelta = Mathf.Clamp(localDelta, 0, timerView.Limit - totalTime);
+                var totalLimit = timerView.Limit - totalTime;
+                localDelta = Mathf.Clamp(localDelta, 0, totalLimit);
                 timerView.Time += localDelta;
                 if (timerView.Time > timerView.Limit)
                 {
                     timerView.Time = timerView.Limit;
                 }
-                _rewardText.Reward = (int)(reward * localDelta / (timerView.Limit - totalTime));
+                _rewardText.Reward = (int)(reward * localDelta / totalLimit);
                 if (_rewardText.Reward > reward)
                 {
                     _rewardText.Reward = reward;

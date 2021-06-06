@@ -90,7 +90,7 @@ namespace Gameplay
                     if (hasWon)
                         return new VictoryMode(_timer, _inputHint, _monologueHint, _winGameText, _rewardText, _timerText, player);
 
-                    return new DefeatMode(_timer, _inputHint, _gameOverText);
+                    return new DefeatMode(_timer, _inputHint, _monologueHint, _gameOverText, player);
                 }
 
                 void RestartGame(bool doRestart)

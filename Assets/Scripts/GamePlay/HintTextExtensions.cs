@@ -30,5 +30,11 @@
         public static void ShowMoveUpHint(this IHintText hint) => hint.Show("Now  bring  it  back  to  me.\nAnd  be  QUICK...");
 
         public static void ShowRewardHint(this IHintText hint) => hint.Show("Let's  see  how  much  I  can  PAY  you  for  your  SERVICE...");
+
+        public static void ShowDeathHint(this IHintText hint, bool hasRing)
+        {
+            var text = hasRing ? "Such  a  pity!  Your  were  SO  close" : "Ah.  You  have  not  even  made  it  halfway";
+            hint.Show(text);
+        }
     }
 }
