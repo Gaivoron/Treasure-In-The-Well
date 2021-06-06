@@ -22,5 +22,18 @@ namespace Gameplay.Cameras
         float ICameraBounds.MaxX => _maxX;
         float ICameraBounds.MinY => _minY;
         float ICameraBounds.MaxY => _maxY;
+
+        private void OnDrawGizmosSelected()
+        {
+            var bottomLeft = new Vector3(_minX, _minY);
+            var topLeft = new Vector3(_minX, _maxY);
+            var topRight = new Vector3(_maxX, _maxY);
+            var buttomRight = new Vector3(_maxX, _minY);
+
+            Gizmos.DrawLine(bottomLeft, topLeft);
+            Gizmos.DrawLine(topLeft, topRight);
+            Gizmos.DrawLine(topRight, buttomRight);
+            Gizmos.DrawLine(buttomRight, bottomLeft);
+        }
     }
 }
