@@ -7,8 +7,8 @@ namespace Gameplay
     {
         public event Action<bool> Finished;
 
-        private readonly ITimer _timer;
-        private readonly IHintText _hint;
+        protected readonly ITimer _timer;
+        protected readonly IHintText _hint;
 
         protected GameOver(ITimer timer, IHintText inputHint)
         {
@@ -16,17 +16,24 @@ namespace Gameplay
             _hint = inputHint;
         }
 
-        protected void RegisterTimer()
+        protected void RegisterRestartTimer()
         {
             _hint.ShowRestartHint();
-            _timer.TimePassed += OnTimePassed;
+            _timer.TimePassed += OnRestartTimePassed;
         }
 
-        private void OnTimePassed(float time)
+        protected virtual void Finish(bool doContinue)
+        {
+            _timer.TimePassed -= OnRestartTimePassed;
+            Finished?.Invoke(doContinue);
+        }
+
+        private void OnRestartTimePassed(float time)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Finished?.Invoke(true);
+                _timer.TimePassed -= OnRestartTimePassed;
+                Finish(false);
             }
         }
     }

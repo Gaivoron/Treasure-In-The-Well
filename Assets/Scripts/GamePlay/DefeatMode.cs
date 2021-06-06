@@ -12,7 +12,7 @@ namespace Gameplay
             monologueHint.ShowDeathHint(player.HasQuestItem);
             AudioManager.Instance.PlayDefeatSound();
             _gameOverText.SetActive(true);
-            RegisterTimer();
+            RegisterRestartTimer();
         }
     }
 }

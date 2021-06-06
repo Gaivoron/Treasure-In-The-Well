@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using Gameplay.Player;
 using Gameplay.Cameras;
 using AudioManagement;
+using Levels;
 
 namespace Gameplay
 {
@@ -29,9 +30,15 @@ namespace Gameplay
         [SerializeField] private EnviromentalHazard _hazard;
         [SerializeField] private Enemy[] _enemies;
 
+        private ushort Level
+        {
+            get => LevelManager.Instance.Current?.Index ?? 0;
+        }
+
         public void GoToMainMenu()
         {
             AudioManager.Instance.PlayMenuBackSound();
+            //TODO - use LevelManager.Instance instead
             SceneManager.LoadScene("MainMenu");
         }
 
@@ -82,19 +89,27 @@ namespace Gameplay
                 void OnGameOver(bool hasWon)
                 {
                     SetPlayer(null);
-                    GetGameOverMode(hasWon).OnFinished(RestartGame);
+                    GetGameOverMode(hasWon).OnFinished(ContinueGame);
                 }
 
                 IGameMode GetGameOverMode(bool hasWon)
                 {
                     if (hasWon)
-                        return new VictoryMode(_timer, _inputHint, _monologueHint, _winGameText, _rewardText, _timerText, player);
+                        return new VictoryMode(_timer, _inputHint, _monologueHint, _winGameText, _rewardText, _timerText, player, Level);
 
                     return new DefeatMode(_timer, _inputHint, _monologueHint, _gameOverText, player);
                 }
 
-                void RestartGame(bool doRestart)
+                void ContinueGame(bool doContinue)
                 {
+                    if (doContinue)
+                    {
+                        //TODO - use methods of ILevelManager.Current?
+                        LevelManager.Instance.Load((ushort)(Level + 1));
+                        return;
+                    }
+
+                    //TODO - use methods of ILevelManager?
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 }
             }

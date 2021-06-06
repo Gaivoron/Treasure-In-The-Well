@@ -15,6 +15,7 @@
         }
 
         public static void ShowRestartHint(this IHintText hint) => hint.Show("Press  \"R\"  to  Restart");
+        public static void ShowContinueHint(this IHintText hint) => hint.Show("Press  \"SPACEBAR\"  to  Continue");
 
         public static void ShowStartHint(this IHintText hint, bool isPressed)
         {

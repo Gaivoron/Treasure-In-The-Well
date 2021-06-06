@@ -3,6 +3,8 @@ using AudioManagement;
 using System.Collections;
 using Gameplay.Player;
 using System.Linq;
+using Profiles;
+using Levels;
 
 namespace Gameplay
 {
@@ -10,16 +12,16 @@ namespace Gameplay
     {
         private readonly RewardView _rewardText;
 
-        public VictoryMode(ITimer timer, IHintText inputHint, IHintText monologueHint, GameObject winGameText, RewardView rewardText, ITimerView timerView, IPlayer player)
+        public VictoryMode(ITimer timer, IHintText inputHint, IHintText monologueHint, GameObject winGameText, RewardView rewardText, ITimerView timerView, IPlayer player, ushort level)
             : base(timer, inputHint)
         {
             _rewardText = rewardText;
             winGameText.SetActive(true);
             AudioManager.Instance.PlayVictorySound();
-            CoroutineManager.Instance.StartCoroutine(ShowScoreRoutine(player, monologueHint, timerView));
+            CoroutineManager.Instance.StartCoroutine(ShowScoreRoutine(player, monologueHint, timerView, level));
         }
 
-        private IEnumerator ShowScoreRoutine(IPlayer player, IHintText monologueHint, ITimerView timerView)
+        private IEnumerator ShowScoreRoutine(IPlayer player, IHintText monologueHint, ITimerView timerView, ushort level)
         {
             monologueHint.ShowRewardHint();
 
@@ -28,6 +30,7 @@ namespace Gameplay
             player.Release();
             var totalTime = timerView.Time;
             var reward = CalculateReward(totalTime);
+            ProfileManager.Instance.Profile.SetLevelData(level, (ulong)(reward + itemsValue), totalTime);
             yield return new WaitForSecondsRealtime(2);
 
             _rewardText.Reward = 0;
@@ -60,13 +63,41 @@ namespace Gameplay
             }
 
             monologueHint.Hide();
-            RegisterTimer();
+
+            if (LevelManager.Instance.Levels.LastOrDefault()?.Stats != null)
+            {
+                RegisterRestartTimer();
+            }
+            else
+            {
+                RegisterContinueTimer();
+            }
 
             int CalculateReward(float time)
             {
                 var score = (int)((timerView.Limit - time) * 2);
                 return score > 0 ? score : 0;
             }
+        }
+
+        private void RegisterContinueTimer()
+        {
+            _hint.ShowContinueHint();
+            _timer.TimePassed += OnContineTimePassed;
+        }
+
+        private void OnContineTimePassed(float time)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Finish(true);
+            }
+        }
+
+        protected override void Finish(bool doContinue)
+        {
+            _timer.TimePassed += OnContineTimePassed;
+            base.Finish(doContinue);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Levels;
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,8 +41,14 @@ namespace Menu
 
         private void Play()
         {
-            //TODO - check if player completed first level.
-            SceneManager.LoadScene("GameplayLevel_000");
+            if (LevelManager.Instance.Levels.Last().Index == 0)
+            {
+                LevelManager.Instance.Load(0);
+            }
+            else
+            {
+                //TODO - show level selection screen.
+            }
         }
 
         private void Exit()
