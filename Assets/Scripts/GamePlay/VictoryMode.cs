@@ -64,13 +64,13 @@ namespace Gameplay
 
             monologueHint.Hide();
 
-            if (LevelManager.Instance.Levels.LastOrDefault()?.Stats != null)
+            if (LevelManager.Instance.Levels.LastOrDefault(any => any.Index == level + 1) != null)
             {
-                RegisterRestartTimer();
+                RegisterContinueTimer();
             }
             else
             {
-                RegisterContinueTimer();
+                RegisterRestartTimer();
             }
 
             int CalculateReward(float time)

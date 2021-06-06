@@ -89,8 +89,8 @@ MonoBehaviour:
       _minValue: 1
       _maxValue: 1
     _clips:
-    - {fileID: 8300000, guid: 553cdaecb0fc4df4786ff384cd06356a, type: 3}
-    - {fileID: 8300000, guid: f94751bae46af8b4b82154ca7d4e8647, type: 3}
+    - {fileID: 8300000, guid: 49e30b349af768042877d24bf4025c6a, type: 3}
+    - {fileID: 8300000, guid: 5c592f8b54301024c90ed6efdec7e7f0, type: 3}
   - _key: defeat
     _pitch:
       _minValue: 1
