@@ -1,4 +1,5 @@
-﻿using Levels;
+﻿using AudioManagement;
+using Levels;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,7 @@ namespace Menu
 
         public void Exit()
         {
+            AudioManager.Instance.PlayMenuBackSound();
             OnOptionChosen(null);
         }
 
