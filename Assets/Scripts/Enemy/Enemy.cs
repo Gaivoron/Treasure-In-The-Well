@@ -1,25 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Gameplay.Player;
 using UnityEngine;
+using System;
+using AudioManagement;
 
-public class Enemy : MonoBehaviour
+public sealed class Enemy : MonoBehaviour
 {
-    [Header("Target")]
-    [SerializeField] private Transform player;
+    public event Action<bool> TargetObtained;
 
     [Header("Enemy Settings")]
     [SerializeField] private float _speed;
     [SerializeField] private float _radiusAgro;
 
-    [Header("Script Ref's")]
-    [SerializeField] private PlayerController playerController;
-
+    [Space]
+    [SerializeField] private GameObject[] _trails;
 
     private Vector2 startPos;
+    private bool _hasTarget;
+
+    public IPlayer Player
+    {
+        get;
+        set;
+    }
+
+    private bool HasTarget
+    {
+        get => _hasTarget;
+        set
+        {
+            if (value != _hasTarget)
+            {
+                _hasTarget = value;
+                TargetObtained?.Invoke(value);
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, _radiusAgro);
+    }
 
     private void Awake()
     {
+        HasTarget = false;
+        ShowTrails(false);
         startPos = transform.position;
+
+        //TODO - move outside of class?
+        TargetObtained += OnTargetObtained;
     }
 
     private void Update()
@@ -27,35 +56,39 @@ public class Enemy : MonoBehaviour
         MovingLogic();
     }
 
+    private void OnDestroy()
+    {
+        TargetObtained = null;
+    }
+
+    private void OnTargetObtained(bool hasTarget)
+    {
+        if (hasTarget)
+        {
+            AudioManager.Instance.PlayEnemyAlertSound();
+        }
+        ShowTrails(hasTarget);
+    }
+
+    private void ShowTrails(bool isVisible)
+    {
+        foreach (var trail in _trails)
+        {
+            trail.SetActive(isVisible);
+        }
+    }
+
     # region MovingLogic
     private void MovingLogic()
     {
-
-        if (!playerController.IsDead)
-        {
-            if (Vector2.Distance(transform.position, player.position) < _radiusAgro)
-            {
-                MovingToPlayer();
-            }
-            else if (Vector2.Distance(transform.position, player.position) > _radiusAgro)
-            {
-                MovingToOrigPos();
-            }
-        }
-        else
-        {
-            MovingToOrigPos();
-        }
+        HasTarget = Player != null && !Player.IsDead && Vector2.Distance(transform.position, Player.Position) < _radiusAgro;
+        MoveTo(HasTarget ? Player.Position : startPos);
     }
-    private void MovingToPlayer()
+
+    private void MoveTo(Vector3 target)
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, _speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target, _speed * Time.deltaTime);
     }
 
-
-    private void MovingToOrigPos()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, startPos, _speed * Time.deltaTime);
-    }
     #endregion
 }

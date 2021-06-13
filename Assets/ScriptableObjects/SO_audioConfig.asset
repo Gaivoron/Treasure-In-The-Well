@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337d9684506baa74cad8560036d34758, type: 3}
+  m_Name: SO_audioConfig
+  m_EditorClassIdentifier: 
+  _sounds:
+  - _key: victory
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: fd600efe800aa9b4fb33700ba34d212e, type: 3}
+  - _key: quest_item
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 56a085498d806284cbfc45bf59b32980, type: 3}
+  - _key: jump
+    _pitch:
+      _minValue: 1
+      _maxValue: 1.6
+    _clips:
+    - {fileID: 8300000, guid: 2ebf2421dddc15a45b7fc6ae8197b1c0, type: 3}
+    - {fileID: 8300000, guid: f91902adc047569498ceaec7d83686ea, type: 3}
+    - {fileID: 8300000, guid: f67fefaf5bb3eb84fa6ec45a0ca1c977, type: 3}
+    - {fileID: 8300000, guid: 8832cab0a285c4446b6b0a8c94fbc53b, type: 3}
+  - _key: injury
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 558f9f56f603a954b8d45e17e89341d9, type: 3}
+    - {fileID: 8300000, guid: 2b6e306f144fd2047ad36490140f8b85, type: 3}
+  - _key: valuable_item
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 5ab8fc664ca4d604f820e255005a664a, type: 3}
+    - {fileID: 8300000, guid: 8d3030fbfa5bb694bb1307e57203e340, type: 3}
+    - {fileID: 8300000, guid: c050b1366437b3345b24999d1d85b48f, type: 3}
+    - {fileID: 8300000, guid: bc98e544f02c5a24a812bb07d4b19c28, type: 3}
+  - _key: foot_steps
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 867c016b808e9814bb1f9cc691ce623c, type: 3}
+    - {fileID: 8300000, guid: d3d5c9e07eebac64e93aac6fc54de6f2, type: 3}
+    - {fileID: 8300000, guid: dbd29427d2397db4b9be66dc7a53d2a1, type: 3}
+    - {fileID: 8300000, guid: d159dd547056d4d4fb7c333a806b7952, type: 3}
+    - {fileID: 8300000, guid: 006812eab0452d944aaa1ff1ddb74baf, type: 3}
+    - {fileID: 8300000, guid: 227743d78c3b0924ebe8a10e2ba09974, type: 3}
+    - {fileID: 8300000, guid: 3ade061871232794194fec132e8ee39b, type: 3}
+    - {fileID: 8300000, guid: 58d480d70f3c4ab48b5f8a65c2209550, type: 3}
+    - {fileID: 8300000, guid: eabdf08cd8e96cc4d8c9a522fbfd9841, type: 3}
+    - {fileID: 8300000, guid: d7d22feec23fbc3439955f32e9c0ae92, type: 3}
+    - {fileID: 8300000, guid: 9c4fc7ae5e1c59e408c6830a3aa2cb8d, type: 3}
+    - {fileID: 8300000, guid: 6d27b87c36db1234fbb3e7dfb65eee00, type: 3}
+    - {fileID: 8300000, guid: 27b02825c65c2f8409797e0522ce3f37, type: 3}
+  - _key: lava_splash
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 0f016b6cf44343740876e0333d5df5d5, type: 3}
+    - {fileID: 8300000, guid: b9e8bcee8c4cc0b40a2fc19a9fd3da55, type: 3}
+    - {fileID: 8300000, guid: 65a85769c169c164ca3c59413c2ff1e6, type: 3}
+    - {fileID: 8300000, guid: d95a7e12db10bb6439dba36a0bf272a4, type: 3}
+  - _key: impact
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: a269c01ca8e203d4b938e8e3ba10e938, type: 3}
+    - {fileID: 8300000, guid: 4a1399cbcdf066d4885843794a17a4e8, type: 3}
+  - _key: enemy_alert
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 49e30b349af768042877d24bf4025c6a, type: 3}
+    - {fileID: 8300000, guid: 5c592f8b54301024c90ed6efdec7e7f0, type: 3}
+  - _key: defeat
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: f3763e0d1f36e3343b688d09626aa178, type: 3}
+  - _key: menu_back
+    _pitch:
+      _minValue: 1
+      _maxValue: 1
+    _clips:
+    - {fileID: 8300000, guid: 81687e19c951e1b41ae09fc602453bc8, type: 3}
+    - {fileID: 8300000, guid: db004870745ab964faa97be9f47664bc, type: 3}
